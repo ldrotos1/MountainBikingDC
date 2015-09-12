@@ -1,4 +1,7 @@
 /**
+ * Louis Drotos
+ * Sept 12, 2015
+ * 
  * This module provides a class that represents a
  * trail marker. 
  */

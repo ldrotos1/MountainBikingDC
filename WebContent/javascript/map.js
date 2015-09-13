@@ -14,12 +14,11 @@ nsMap = function(){
 	return {
 		
 		/**
-		 * Creates a new map object depicting a set of trails
+		 * Creates a new map object containing the applicaiton's basemap.
 		 * @param div {string} The id of the DIV that the map will be attached to.
-		 * @param arrTrails {array} An array of Trail objects that will be included in the map.
 		 * @returns {object} The new map object
 		 */
-		createMap: function(div, arrTrails) {
+		createMap: function(div) {
 			
 			// Creates the map
 			setMapHeight();
@@ -54,7 +53,7 @@ nsMap = function(){
 		numHeadHeight;
 		
 		numWinHeight = $( window ).height();
-		numHeadHeight = $( 'header' ).height()
+		numHeadHeight = $( 'header' ).height();
 		$( '#map' ).height(numWinHeight - numHeadHeight);
 	}
 	

@@ -7,5 +7,6 @@
  */
 
 var objGlobalVars = {
-		objMap:null
+	objMap: null,
+	objDbRef: null
 }

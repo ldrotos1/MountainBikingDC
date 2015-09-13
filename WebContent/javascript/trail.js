@@ -31,10 +31,11 @@ function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, cond
 	this.difficulty = difficulty;
 	this.condition = condition;
 	this.avgRating = avgRating;
+	this.icon = 'styles/images/biking_icon_org.png'; 
 	this.marker = new L.marker(new L.latLng(lat, lon), {
 		title: name,
-		icon: L.icon({
-			iconUrl: 'styles/images/biking_icon_org.png',
+		icon: new L.icon({
+			iconUrl: this.icon,
 		    iconSize: [30, 30],
 		    iconAnchor: [15, 15]
 		})
@@ -58,6 +59,27 @@ Trail.prototype = {
 		 */
 		addToMap: function(map) {
 			
+			var self = this;
+			
+			// Adds the on hover functionality
+			this.marker.on('mouseover', function(e) {
+				e.target.setIcon(new L.icon({
+					iconUrl: self.icon,
+					iconSize: [40, 40],
+					iconAnchor: [20, 20]
+				}))
+			});
+			
+			// Adds the off hover functionality
+			this.marker.on('mouseout', function(e) {
+				e.target.setIcon(new L.icon({
+					iconUrl: self.icon,
+				    iconSize: [30, 30],
+				    iconAnchor: [15, 15]
+				}))
+			});
+			
+			// Adds the marker to the map
 			this.marker.addTo(map);
 		}
 }

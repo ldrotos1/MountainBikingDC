@@ -22,7 +22,7 @@ nsMap = function(){
 			
 			// Creates the map
 			setMapHeight();
-			var map = L.map(div, {
+			var map = new L.map(div, {
 				center: [38.892017,-77.042938],
 				zoom: 10,
 				minZoom: 10,

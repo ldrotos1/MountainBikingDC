@@ -18,15 +18,15 @@ $( window ).load(function() {
 		
 		$.each(data.val(), function( index, value ) {
 			
-			// Creates the marker and adds it to the map
-			L.marker(new L.latLng(value.lat, value.lon), {
-				title: value.name,
-				icon: L.icon({
-					iconUrl: 'styles/images/biking_icon_org.png',
-				    iconSize: [30, 30],
-				    iconAnchor: [15, 15]
-				})
-			}).addTo(objGlobalVars.objMap);
+			var trail;
+			
+			// Creates the trail object and adds it to the map
+			trail = new Trail(value.name, value.lat, value.lon, value.address, value.city, value.zip,
+					value.distance, value.difficulty, value.condition, value.avg_rating);
+			trail.addToMap(objGlobalVars.objMap);
+			
+			// Saves a reference of the trail
+			objGlobalVars.arrTrails[index] = trail;
 		});
 	});
 });

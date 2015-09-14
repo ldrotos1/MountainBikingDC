@@ -3,10 +3,14 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.theme.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
@@ -17,6 +21,31 @@
 	<header>
 		<h1>Mountain Biking in the D.C. Metro Area</h1>
 	</header>
-	<div id="map"></div>
+	<div id="map">
+	
+		<!-- Controls pane -->
+		<div id='controls-pane'>
+	
+			<div id='search-container'>
+				<span class='control-label'>Search by Name:</span><br>
+				<input id='search-name-control'/>
+			</div>
+		
+			<div id='display-container'>
+				<span class='control-label'>Display Trails by:</span><br>
+				<select id='display-by-control'>
+					<option selected="selected">Default</option>
+					<option>Trail Condition</option>
+					<option>Average Rating</option>
+					<optgroup label="Difficulty">
+						<option>Beginner</option>
+						<option>Intermediate</option>
+						<option>Advanced</option>
+					</optgroup>
+				</select>
+			</div>	
+		</div>
+	
+	</div>
 </body>
 </html>

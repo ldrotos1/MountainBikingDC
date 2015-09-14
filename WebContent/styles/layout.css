@@ -39,3 +39,45 @@ header h1 {
 	margin: 0;
 	padding: 0;
 }
+
+#controls-pane {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	z-index: 99;
+	padding: 0.75em;
+	background-color: #E4E4E4;
+	border: 1px solid;
+	border-color: #999999;
+    border-radius: 6px;
+    box-shadow: 0px 0px 9px #9F9F9F;
+}
+
+.control-label {
+	font-size: 1.15em;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-weight: bold;
+	color: #245C83; 
+}
+
+#search-container {
+	float: left;
+}
+
+#display-container {
+	float: right;
+	margin-left: 1.25em;
+}
+
+#search-name-control {
+	margin-top: 2px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	background-color: #F3F3F3;
+	border-bottom-color: #DADADA;
+	border-right-color: #DADADA;
+	font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+	color: #2e6e9e;
+}
+

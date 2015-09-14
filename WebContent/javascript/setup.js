@@ -16,9 +16,13 @@ $( window ).load(function() {
 
 	objGlobalVars.objDbRef.once("value", function(data) {
 		
+		var arrNames = [],
+		trail;
+		
 		$.each(data.val(), function( index, value ) {
 			
-			var trail;
+			// Adds the trail name to array 
+			arrNames[index] = value.name
 			
 			// Creates the trail object and adds it to the map
 			trail = new Trail(value.name, value.lat, value.lon, value.address, value.city, value.zip,
@@ -28,6 +32,16 @@ $( window ).load(function() {
 			// Saves a reference of the trail
 			objGlobalVars.arrTrails[index] = trail;
 		});
+		
+		// Initializes the search by name control
+		$( "#search-name-control" ).autocomplete({
+			source: arrNames
+		});
+	});
+	
+	// Initializes the display trails by control
+	$( "#display-by-control" ).selectmenu({
+		width: 150
 	});
 });
 	

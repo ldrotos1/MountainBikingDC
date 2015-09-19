@@ -31,7 +31,8 @@ function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, cond
 	this.difficulty = difficulty;
 	this.condition = condition;
 	this.avgRating = avgRating;
-	this.icon = 'styles/images/biking_icon_org.png'; 
+	this.selected = false;
+	this.icon = 'styles/images/trail_icons/trail_icon_standard.png'; 
 	this.marker = new L.marker(new L.latLng(lat, lon), {
 		title: name,
 		icon: new L.icon({
@@ -81,6 +82,144 @@ Trail.prototype = {
 			
 			// Adds the marker to the map
 			this.marker.addTo(map);
+		},
+
+		/**
+		 * Sets the trail's symbol to the default
+		 */
+		symbDefault: function() {
+			
+			this.updateIcon('styles/images/trail_icons/trail_icon_standard.png');
+		},
+		
+		/**
+		 * Sets the trail's symbol based on the trail condition
+		 */
+		symbCondition: function() {
+			
+			if (this.condition === 'Good') {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_cond_good.png');
+			}
+			else if (this.condition === 'Fair') {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_cond_fair.png');
+			}
+			else if (this.condition === 'Bad') {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_cond_bad.png');
+			}
+			else {
+				console.log("Unknown trail condition");
+			}
+		},
+		
+		/**
+		 * Sets the trail's symbol based on the average rating
+		 */
+		symbAvgRating: function() {
+			
+			if (this.avgRating === 0) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_grey_out.png');
+			}
+			else if (this.avgRating === 1) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_1_star.png');
+			}
+			else if (this.avgRating === 2) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_2_star.png');
+			}
+			else if (this.avgRating === 3) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_3_star.png');
+			}
+			else if (this.avgRating === 4) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_4_star.png');
+			}
+			else if (this.avgRating === 5) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_5_star.png');
+			}
+			else {
+				console.log("Unknown trail rating");
+			}
+		},
+		
+		/**
+		 * Sets the trail's symbol based on whether or not a
+		 * beginner trail is available 
+		 */
+		symbBeginner: function() {
+			
+			if (this.difficulty === 1 || this.difficulty === 3 || this.difficulty === 7) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_beginner.png');
+			}
+			else {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_grey_out.png');
+			}
+		},
+		
+		/**
+		 * Sets the trail's symbol based on whether or not a
+		 * intermediate trail is available 
+		 */
+		symbIntermediate: function() {
+			
+			if (this.difficulty === 2 || this.difficulty === 3 || this.difficulty === 6) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_intermediate.png');
+			}
+			else {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_grey_out.png');
+			}
+		},
+		
+		/**
+		 * Sets the trail's symbol based on whether or not a
+		 * advance trail is available 
+		 */
+		symbAdvanced: function() {
+			
+			if (this.difficulty === 4 || this.difficulty === 6 || this.difficulty === 7) {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_advanced.png');
+			}
+			else {
+				
+				this.updateIcon('styles/images/trail_icons/trail_icon_grey_out.png');
+			}
+		},
+		
+		/**
+		 * Changes the icon representing the trail on the amp
+		 * @param url {string} The URL to the new icon
+		 */
+		updateIcon: function(url) {
+			
+			this.icon = url;
+			
+			if (this.selected == true) {
+				
+				this.marker.setIcon(new L.icon({
+					iconUrl: this.icon,
+					iconSize: [40, 40],
+					iconAnchor: [20, 20]
+				}));
+			}
+			else {
+				
+				this.marker.setIcon(new L.icon({
+					iconUrl:this.icon,
+					iconSize: [30, 30],
+					iconAnchor: [15, 15]
+				}));
+			}
 		}
 }
 

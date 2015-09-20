@@ -32,8 +32,9 @@ function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, cond
 	this.condition = condition;
 	this.avgRating = avgRating;
 	this.selected = false;
+	this.coord = new L.latLng(lat, lon)
 	this.icon = 'styles/images/trail_icons/trail_icon_standard.png'; 
-	this.marker = new L.marker(new L.latLng(lat, lon), {
+	this.marker = new L.marker(this.coord, {
 		title: name,
 		icon: new L.icon({
 			iconUrl: this.icon,
@@ -84,6 +85,18 @@ Trail.prototype = {
 			this.marker.addTo(map);
 		},
 
+		/**
+		 * Displays the trail in the map as being selected
+		 */
+		selectTrail: function() {
+			
+			this.marker.setIcon(new L.icon({
+				iconUrl: this.icon,
+				iconSize: [40, 40],
+				iconAnchor: [20, 20]
+			}));
+		},
+		
 		/**
 		 * Sets the trail's symbol to the default
 		 */

@@ -35,7 +35,25 @@ $( window ).load(function() {
 		
 		// Initializes the search by name control
 		$( "#search-name-control" ).autocomplete({
-			source: arrNames
+			source: arrNames,
+			select: function( event, ui ) {
+				
+				var strVal,
+				objCoord;
+				
+				// Iterates through the trails to find the selected trail
+				strVal = ui.item.value;
+				$.each(objGlobalVars.arrTrails, function( index, value ) {
+					
+					if (value.name === strVal) {
+						
+						// Enlarges the marker of the selected trail and centers the 
+						// map on the marker.
+						value.selectTrail();
+						objGlobalVars.objMap.setView(value.coord);
+					}
+				});
+			}
 		});
 		
 		// Initializes the display trails by control
@@ -45,44 +63,44 @@ $( window ).load(function() {
 				
 				// Determines what symbol scheme to use and applies
 				// scheme to each of the trails
-				var val = ui.item.value;
+				var strVal = ui.item.value;
 				
-				if (val === 'Default') {
+				if (strVal === 'Default') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						
 						value.symbDefault();
 					});
 				}
-				else if (val === 'Trail Condition') {
+				else if (strVal === 'Trail Condition') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						
 						value.symbCondition();
 					});
 				}
-				else if (val === 'Average Rating') {
+				else if (strVal === 'Average Rating') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						
 						value.symbAvgRating();
 					});
 				}
-				else if (val === 'Beginner') {
+				else if (strVal === 'Beginner') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						
 						value.symbBeginner();
 					});
 				}
-				else if (val === 'Intermediate') {
+				else if (strVal === 'Intermediate') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						
 						value.symbIntermediate();
 					});
 				}
-				else if (val === 'Advanced') {
+				else if (strVal === 'Advanced') {
 					
 					$.each(objGlobalVars.arrTrails, function( index, value ) {
 						

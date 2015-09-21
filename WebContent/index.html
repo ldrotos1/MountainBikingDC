@@ -7,12 +7,14 @@
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.structure.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.theme.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="styles/trail-info-dialog.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
+	<script type="text/javascript" src="javascript/trail-info-dialog.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
 	<script type="text/javascript" src="javascript/setup.js"></script>
 	<title>D.C. Mountain Biking</title>
@@ -44,6 +46,42 @@
 					</optgroup>
 				</select>
 			</div>	
+		</div>
+		
+		<!-- Trail information dialog -->
+		<div id='trail-info-dialog'>
+		
+			<!-- Information dialog -->
+			<div id='info-dialog'>
+				<div id='basic-info'>
+					<span id='trail-name'></span><br>
+					<span id='trail-address-one'></span><br>
+					<span id='trail-address-two'></span>
+				</div>
+				<div id='trail-info'>
+					<span id='trail-dist'></span><br>
+					<span id='trail-difficulty'></span><br>
+					<span id='trail-condition'></span><br>
+					<span id='trail-avg-rating'></span>
+				</div>
+				<div id='trail-reviews'>
+					<span id='trail-reviews-title'>Trail Reviews:</span>
+					<div id='trail-reviews-list'>
+					</div>
+				</div>
+				<div id='info-toolbar' class='dialog-toolbar'>
+					<button id='btn-review-form' class='dialog-btn'>Submit Review</button>
+					<button id='btn-info-close' class='dialog-btn'>Close</button>
+				</div>
+			</div>
+			
+			<!-- Submit review dialog -->
+			<div id='review-dialog'>
+				<div id='review-toolbar' class='dialog-toolbar'>
+					<button id='btn-submit-review' class='dialog-btn'>Submit Review</button>
+					<button id='btn-review-cancel' class='dialog-btn'>Cancel</button>
+				</div>
+			</div>
 		</div>
 	
 	</div>

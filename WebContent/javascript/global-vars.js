@@ -8,6 +8,5 @@
 
 var objGlobalVars = {
 	objMap: null,
-	objDbRef: null,
 	arrTrails: []
 }

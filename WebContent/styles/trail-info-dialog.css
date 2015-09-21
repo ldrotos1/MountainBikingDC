@@ -1,0 +1,66 @@
+@CHARSET "ISO-8859-1";
+
+#review-dialog {
+	visibility: hidden;
+}
+
+#info-dialog {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #245C83;
+}
+
+#trail-name {
+	font-size: 2.15em;
+	font-weight: bold;
+	padding-bottom: 0.20em;
+}
+
+#trail-address-one, #trail-address-two {
+	font-size: 1.25em;
+}
+
+#trail-info {
+	font-size: 1.5em;
+	padding-top: 0.5em;
+}
+
+#trail-reviews {
+	padding-top: 0.75em;
+}
+
+#trail-reviews-title {
+	font-size: 1.5em;
+}
+
+#trail-reviews-list {
+	overflow-y: scroll;
+	height: 150px;
+	background-color: #dddddd;
+	border-color: #aaaaaa;
+	border-width: 1px;
+	border-style: solid;
+	padding: 0px 5px 0px 5px;
+}
+
+.first-trail-review {
+	margin-top: 1em;
+}
+
+.middle-trail-review {
+	border-bottom-color: #aaaaaa;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	margin-bottom: 1em;
+}
+
+.dialog-toolbar {
+	padding-top: 0.75em;
+	display:block;
+	text-align: center; 
+	position:relative;
+}
+
+.dialog-btn {
+	width: 9em;
+}
+

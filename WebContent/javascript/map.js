@@ -47,7 +47,7 @@ nsMap = function(){
 	/**
 	 * Sets the height of the map pane
 	 */
-	function setMapHeight(){
+	function setMapHeight() {
 		
 		var numWinHeight,
 		numHeadHeight;

@@ -11,10 +11,12 @@ $( window ).load(function() {
 	// Creates the map
 	objGlobalVars.objMap = nsMap.createMap("map");
 	
+	// Setups the trail information dialog
+	nsTrailInfoDialog.initDialog();
+	
 	// Gets the data from the data from the database and adds it to the map
-	objGlobalVars.objDbRef = new Firebase('https://radiant-torch-5066.firebaseio.com/trails');
-
-	objGlobalVars.objDbRef.once("value", function(data) {
+	var objDbRef = new Firebase('https://radiant-torch-5066.firebaseio.com/trails');
+	objDbRef.once("value", function(data) {
 		
 		var arrNames = [],
 		trail;

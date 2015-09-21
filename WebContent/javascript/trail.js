@@ -81,6 +81,12 @@ Trail.prototype = {
 				}))
 			});
 			
+			// Opens trail dialog when the marker is clicked
+			this.marker.on('click', function(e) {
+				
+				nsTrailInfoDialog.openTrailDialog(self);
+			});
+			
 			// Adds the marker to the map
 			this.marker.addTo(map);
 		},
@@ -95,6 +101,73 @@ Trail.prototype = {
 				iconSize: [40, 40],
 				iconAnchor: [20, 20]
 			}));
+		},
+		
+		/**
+		 * Returns the written statement of the trail's difficulty.
+		 * @returns {string} The trail difficulty.
+		 */
+		getDifficulty: function() {
+			
+			var numDiff = this.difficulty;
+			
+			if (numDiff === 1) {
+				
+				return 'Easy';
+			}
+			else if (numDiff === 2) {
+				
+				return 'Intermediate';
+			}
+			else if (numDiff === 3) {
+				
+				return 'Easy to Intermediate';
+			}
+			else if (numDiff === 4) {
+				
+				return 'Advanced';
+			}
+			else if (numDiff === 6) {
+				
+				return 'Intermediate to Advanced';
+			}
+			else if (numDiff === 7) {
+				
+				return 'Easy to Advanced';
+			}
+			else {
+				console.log('Unknown difficulty')
+				return null;
+			}
+		},
+		
+		/**
+		 * Returns the written statement of the trail's average rating.
+		 * @returns {string} The trail's average rating.
+		 */
+		getAverageRating: function() {
+			
+			var numRating = this.avgRating;
+			
+			if (numRating === 0) {
+				
+				return 'Trail not rated'
+			}
+			else if (numRating === 1) {
+				return '1 out of 5'
+			}
+			else if (numRating === 2) {
+				return '2 out of 5'
+			}
+			else if (numRating === 3) {
+				return '3 out of 5'
+			}
+			else if (numRating === 4) {
+				return '4 out of 5'
+			}
+			else if (numRating === 5) {
+				return '5 out of 5'
+			}
 		},
 		
 		/**

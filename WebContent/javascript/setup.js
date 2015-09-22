@@ -24,7 +24,7 @@ $( window ).load(function() {
 		$.each(data.val(), function( index, value ) {
 			
 			// Adds the trail name to array 
-			arrNames[index] = value.name
+			arrNames.push(value.name);
 			
 			// Creates the trail object and adds it to the map
 			trail = new Trail(value.name, value.lat, value.lon, value.address, value.city, value.state, value.zip,
@@ -32,7 +32,7 @@ $( window ).load(function() {
 			trail.addToMap(objGlobalVars.objMap);
 			
 			// Saves a reference of the trail
-			objGlobalVars.arrTrails[index] = trail;
+			objGlobalVars.arrTrails.push(trail);
 		});
 		
 		// Initializes the search by name control

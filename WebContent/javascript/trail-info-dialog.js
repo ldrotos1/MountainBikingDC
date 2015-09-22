@@ -30,15 +30,25 @@ nsTrailInfoDialog = function(){
 		    	}
 		    });
 			
+			// Initializes the ratings spinner
+			$( "#reviewer-rating" ).spinner({
+				min:1,
+				max:5
+			});
+			
 			// Initializes the trail information dialog buttons and 
 			// wires the click events
 			
 			// Shows the review form
 			$( '#btn-review-form' ).button().click( function() {
 				
+				// Switches the dialog content
 				$( '#info-dialog' ).fadeOut( 400, function(){
 					$( '#review-dialog' ).fadeIn( 400 ).css( 'visibility', 'visible' );
 			    });
+				
+				// Resizes the dialog
+				$( "#trail-info-dialog" ).dialog( "option", { width: 340 } );
 			});
 			
 			// Closes the dialog
@@ -50,8 +60,62 @@ nsTrailInfoDialog = function(){
 			// Submits the review
 			$( '#btn-submit-review' ).button().click( function() {
 				
-				// Shows the station info DIV
-				showTrailInfoDiv();
+				var strName,
+				strRating,
+				strDate,
+				strComment,
+				strTrailName,
+				strReviewDom,
+				objDbConn,
+				objNewReview;
+				
+				// Gets the user inputs 
+				strName = $( '#reviewer-name' ).val();
+				strRating = $( '#reviewer-rating' ).val();
+				strComment = $( '#reviewer-comments' ).val();
+				
+				if (strComment === '') {
+					strComment = "No comments provided.";
+				}
+				
+				// Validates inputs
+				if (strName === '' || strRating === '') {
+				
+					alert("Please provide at least a name and a rating.");
+				}
+				else {
+					
+					// Adds the review to the review list
+					strDate = new Date().toJSON().slice( 0, 10 );
+					strReviewDom = "<div class=\'middle-trail-review\'>";
+					strReviewDom += "<span>" + strName + "</span><br>";
+					strReviewDom += "<span>" + strDate + "</span><br>";
+					strReviewDom += "<span>" + strRating + " out of 5</span><br>";
+					strReviewDom += "<p>" + strComment + "</p>";
+					strReviewDom += "</div>";
+					$( "#trail-reviews-list" ).prepend( strReviewDom );
+					
+					// Updates review classes
+					$( '.first-trail-review:first' ).removeClass( 'first-trail-review' );
+					$( '.middle-trail-review:first' ).addClass( 'first-trail-review' );
+					
+					// Shows the station info DIV
+					showTrailInfoDiv();
+					
+					// Gets the trail name and removes any spaces
+					strTrailName = $( '#trail-name' ).text();
+					strTrailName = strTrailName.replace(/ +/g, "");
+					
+					// Pushes the new review to the database
+					objDbConn = new Firebase('https://radiant-torch-5066.firebaseio.com/reviews/' + strTrailName);
+					objNewReview = objDbConn.push();
+					objNewReview.set({ 
+						'name': strName, 
+						'date': strDate,
+						'rating': strRating, 
+						'comments': strComment
+					});
+				}
 			});
 			
 			// Shows the station info DIV
@@ -104,7 +168,7 @@ nsTrailInfoDialog = function(){
 					strReviewDom += "</div>";
 			
 					// Adds the DOM
-					$( "#trail-reviews-list" ).append( strReviewDom );
+					$( "#trail-reviews-list" ).prepend( strReviewDom );
 				});
 				
 				// Sets the DOM class for the first and last reviews
@@ -123,9 +187,17 @@ nsTrailInfoDialog = function(){
 	 */
 	function showTrailInfoDiv() {
 		
+		// Fades to trail info
 		$( '#review-dialog' ).fadeOut( 400, function(){
 			$( '#info-dialog' ).fadeIn( 400 );
 	    });
+		
+		// Resizes the dialog
+		$( "#trail-info-dialog" ).dialog( "option", { width: 500 } );
+		
+		// Clears submission form.
+		$( '#reviewer-name' ).val( '' );
+		$( '#reviewer-rating' ).val( '' );
+		$( '#reviewer-comments' ).val( '' );
 	}
-	
 }();

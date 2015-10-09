@@ -26,7 +26,7 @@ nsMap = function(){
 				center: [38.892017,-77.042938],
 				zoom: 10,
 				minZoom: 10,
-				zoomControl: false,
+				zoomControl: true,
 			});
 			
 			// Adds the base layer to the map

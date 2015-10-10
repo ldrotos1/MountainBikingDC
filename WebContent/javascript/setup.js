@@ -54,6 +54,11 @@ $( window ).load(function() {
 						value.selectTrail();
 						objGlobalVars.objMap.setView(value.coord);
 					}
+					else {
+						
+						// Ensures that this trail is not selected
+						value.unselectTrail();
+					}
 				});
 			}
 		});

@@ -97,9 +97,21 @@ Trail.prototype = {
 		selectTrail: function() {
 			
 			this.marker.setIcon(new L.icon({
-				iconUrl: this.icon,
+				iconUrl: this.icon.replace('.png', '_HL.png'),
 				iconSize: [40, 40],
 				iconAnchor: [20, 20]
+			}));
+		},
+		
+		/**
+		 * Displays the trail in the map as being unselected
+		 */
+		unselectTrail: function() {
+			
+			this.marker.setIcon(new L.icon({
+				iconUrl: this.icon,
+				iconSize: [30, 30],
+				iconAnchor: [15, 15]
 			}));
 		},
 		

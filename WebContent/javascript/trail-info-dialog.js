@@ -62,6 +62,7 @@ nsTrailInfoDialog = function(){
 				
 				var strName,
 				strRating,
+				numRating,
 				strDate,
 				strComment,
 				strTrailName,
@@ -73,6 +74,7 @@ nsTrailInfoDialog = function(){
 				strName = $( '#reviewer-name' ).val();
 				strRating = $( '#reviewer-rating' ).val();
 				strComment = $( '#reviewer-comments' ).val();
+				numRating = parseInt(strRating);
 				
 				if (strComment === '') {
 					strComment = "No comments provided.";
@@ -82,6 +84,10 @@ nsTrailInfoDialog = function(){
 				if (strName === '' || strRating === '') {
 				
 					alert("Please provide at least a name and a rating.");
+				}
+				else if (numRating < 1 || numRating > 5 || isNaN(numRating)){
+					
+					alert("The rating must be between 1 and 5.");
 				}
 				else {
 					

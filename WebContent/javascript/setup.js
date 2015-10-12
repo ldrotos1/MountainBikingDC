@@ -9,7 +9,7 @@
 $( window ).load(function() {
 	
 	// Creates the map
-	objGlobalVars.objMap = nsMap.createMap("map");
+	objGlobalVars.objMap = nsMap.createMap("map"); 
 	
 	// Setups the trail information dialog
 	nsTrailInfoDialog.initDialog();

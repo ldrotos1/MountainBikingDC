@@ -68,6 +68,14 @@
 	margin-bottom: 0.75em;
 }
 
+#reviewer-rating {
+	width: 3em;
+}
+
+.review-required {
+	color: 	#FF0000;
+}
+
 textarea {
 	resize: none;
 	margin-top: 0.75em;
@@ -82,7 +90,7 @@ textarea {
 }
 
 .dialog-btn {
-	width: 10em;
+	width: 11em;
 }
 
 

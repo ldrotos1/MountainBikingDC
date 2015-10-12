@@ -37,7 +37,7 @@ nsTrailInfoDialog = function(){
 			});
 			
 			// Initializes the trail information dialog buttons and 
-			// wires the click events
+			// wires the events
 			
 			// Shows the review form
 			$( '#btn-review-form' ).button().click( function() {

@@ -36,6 +36,11 @@ nsTrailInfoDialog = function(){
 				max:5
 			});
 			
+			// Prevents user input
+			$( "#reviewer-rating" ).bind("keydown", function (event) {
+			    event.preventDefault();
+			});
+			
 			// Initializes the trail information dialog buttons and 
 			// wires the events
 			

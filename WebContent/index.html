@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.theme.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-info-dialog.css">
+	<link rel="stylesheet" type="text/css" href="styles/legend.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
@@ -17,6 +18,7 @@
 	<script type="text/javascript" src="javascript/trail-info-dialog.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
 	<script type="text/javascript" src="javascript/setup.js"></script>
+	<script type="text/javascript" src="javascript/legend.js"></script>
 	<title>D.C. Mountain Biking</title>
 </head>
 <body>
@@ -49,6 +51,15 @@
 					</optgroup>
 				</select>
 			</div>	
+		</div>
+		
+		<!-- Legend pane -->
+		<div id='legend-pane'>
+			<div>
+				<div>
+					<img class='legend-icon' src="styles/images/trail_icons/trail_icon_standard.png"><span class='legend-name'>Mountain Bike Trail</span>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Trail information dialog -->

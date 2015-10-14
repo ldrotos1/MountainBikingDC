@@ -78,6 +78,10 @@ $( window ).load(function() {
 						
 						value.symbDefault();
 					});
+					
+					// Updates the legend
+					nsLegend.showDefaultLegend();
+					
 				}
 				else if (strVal === 'Trail Condition') {
 					
@@ -85,6 +89,9 @@ $( window ).load(function() {
 						
 						value.symbCondition();
 					});
+					
+					// Updates the legend
+					nsLegend.showConditionLegend();
 				}
 				else if (strVal === 'Average Rating') {
 					
@@ -92,6 +99,9 @@ $( window ).load(function() {
 						
 						value.symbAvgRating();
 					});
+					
+					// Updates the legend
+					nsLegend.showRatingLegend();
 				}
 				else if (strVal === 'Beginner') {
 					
@@ -99,6 +109,9 @@ $( window ).load(function() {
 						
 						value.symbBeginner();
 					});
+					
+					// Updates the legend
+					nsLegend.showBeginnerLegend();
 				}
 				else if (strVal === 'Intermediate') {
 					
@@ -106,6 +119,9 @@ $( window ).load(function() {
 						
 						value.symbIntermediate();
 					});
+					
+					// Updates the legend
+					nsLegend.showIntermediateLegend();
 				}
 				else if (strVal === 'Advanced') {
 					
@@ -113,6 +129,9 @@ $( window ).load(function() {
 						
 						value.symbAdvanced();
 					});
+					
+					// Updates the legend
+					nsLegend.showAdvancedLegend();
 				}
 				else {
 					console.log('Unknown display by value');

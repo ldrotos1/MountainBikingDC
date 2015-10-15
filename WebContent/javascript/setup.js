@@ -138,6 +138,19 @@ $( window ).load(function() {
 				}
 			}
 		});
+		
+		// Initializes the help button and dialog	
+		$( '#help-dialog' ).dialog({
+			autoOpen: false,
+	    	modal: true,
+	    	resizable: false,
+	    	title: 'Application Help',
+	    	width: 400,
+		});
+		
+		$( '#help-button' ).button().click(function(){
+			$( '#help-dialog' ).dialog( 'open' );
+		});
 	});
 });
 	

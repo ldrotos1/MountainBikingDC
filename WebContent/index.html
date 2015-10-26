@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="javascript/moment.min.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
 	<script type="text/javascript" src="javascript/trail-info-dialog.js"></script>
@@ -80,7 +81,15 @@
 				<div id='trail-info'>
 					<span id='trail-dist'></span><br>
 					<span id='trail-difficulty'></span><br>
-					<span id='trail-condition'></span><br>
+					<span id='trail-condition'></span><span id='trail-cond-update'>update</span><br>
+					<div id='update-cond-form'>
+						<span>Set Condition</span><br>
+						<input type="radio" name="condition" value="Good">Good - Dry<br>
+						<input type="radio" name="condition" value="Fair">Fair - Some wet spots<br>
+						<input type="radio" name="condition" value="Bad">Bad - Muddy<br>
+						<button id='btn-update-cond'>Update</button>
+						<button id='btn-cancel-cond'>Cancel</button>
+					</div>
 					<span id='trail-avg-rating'></span>
 				</div>
 				<div id='trail-reviews'>

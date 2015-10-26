@@ -24,6 +24,24 @@
 	padding-top: 0.5em;
 }
 
+#trail-cond-update {
+	padding-left: 1.0em;
+	font-size: 0.75em;
+	color: #245C83;
+	text-decoration: underline;
+}
+
+#update-cond-form {
+	padding-left: 1.25em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+#btn-update-cond, #btn-cancel-cond {
+	font-size: 0.75em;
+	padding-top: 
+}
+
 #trail-reviews {
 	padding-top: 0.75em;
 }

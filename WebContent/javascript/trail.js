@@ -18,9 +18,10 @@
  * @param dist {number} The trail's distance in miles
  * @param difficulty {number} The difficulty of the trail
  * @param condition {string} The trail's current condition (Good, Fair, Bad)
+ * @param condDate {string} The date of the trail condition 
  * @param avgRating {number} The trail's average rating  
  */
-function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, condition, avgRating) {
+function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, condition, condDate, avgRating) {
 	
 	this.name = name;
 	this.address = address;
@@ -30,6 +31,7 @@ function Trail(name, lat, lon, address, city, state, zip, dist, difficulty, cond
 	this.distance = dist;
 	this.difficulty = difficulty;
 	this.condition = condition;
+	this.condDate = condDate;
 	this.avgRating = avgRating;
 	this.selected = false;
 	this.coord = new L.latLng(lat, lon)

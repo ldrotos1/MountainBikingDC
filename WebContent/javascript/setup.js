@@ -28,7 +28,7 @@ $( window ).load(function() {
 			
 			// Creates the trail object and adds it to the map
 			trail = new Trail(value.name, value.lat, value.lon, value.address, value.city, value.state, value.zip,
-					value.distance, value.difficulty, value.condition, value.avg_rating);
+					value.distance, value.difficulty, value.condition, value.condition_date, value.avg_rating);
 			trail.addToMap(objGlobalVars.objMap);
 			
 			// Saves a reference of the trail

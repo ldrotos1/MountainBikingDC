@@ -24,6 +24,7 @@ nsTrailInfoDialog = function(){
 		    	width: 500,
 		    	beforeClose: function( event, ui ) {
 		    		showTrailInfoDiv();
+		    		$( '#update-cond-form' ).hide();
 		    	},
 		    	create: function( event, ui ) {
 		    		showTrailInfoDiv();
@@ -41,16 +42,86 @@ nsTrailInfoDialog = function(){
 			    event.preventDefault();
 			});
 			
-			// Initializes the trail information dialog buttons and 
-			// wires the events
+			// Initializes the trail update form
+			$( '#update-cond-form' ).hide();
+			
+			$('#btn-update-cond').button();
+			$('#btn-cancel-cond').button();
+			
+			// Wires events for the update trail button hover
+			$( '#trail-cond-update' ).hover( 
+					function( event ) {
+						$(event.target).css('color', '#0B1C27').css('cursor', 'pointer');
+					},
+					function( event ) {
+						$(event.target).css('color', '#245C83').css('cursor', 'default');
+					}
+			);
+			
+			// Wires events for the update trail button click
+			$( '#trail-cond-update' ).click(function( event ){
+				
+				// Flashes the update button 
+				$(event.target).css('color', '#FFFF00')
+				setTimeout(function(){ 
+					$(event.target).css('color', '#0B1C27')
+				}, 100);
+				
+				// Sets the radio button checked states
+				var currentCond = $( '#trail-condition' ).text();
+				$( "input:radio[name=condition]" ).prop('checked', false);
+				
+				if ( currentCond.includes('Good') === true){
+					
+					$( "input:radio[name=condition][value=Good]" ).prop('checked', true);
+				}
+				else if ( currentCond.includes('Fair') === true){
+					
+					$( "input:radio[name=condition][value=Fair]" ).prop('checked', true);
+				}
+				else if ( currentCond.includes('Bad') === true){
+					
+					$( "input:radio[name=condition][value=Bad]" ).prop('checked', true);
+				}
+				else{
+					console.log("Error - Unknown trail condition value.");
+				}
+				
+				// Shows the update trail condition section
+				$( '#update-cond-form' ).toggle({
+					effect: 'blind',
+					duration: 400
+				});
+			});
+			
+			// Wires the trail condition update button click event handlers
+			$( '#btn-update-cond' ).click(function(){
+				
+				var value = $( "input:radio[name=condition]:checked" ).val();
+				updateTrailCond( value );
+				
+				$( '#update-cond-form' ).hide({
+					effect: 'blind',
+					duration: 400
+				});
+			});
+			
+			$( '#btn-cancel-cond' ).click(function(){
+
+				$( '#update-cond-form' ).hide({
+					effect: 'blind',
+					duration: 400
+				});
+			});
 			
 			// Shows the review form
 			$( '#btn-review-form' ).button().click( function() {
-				
+								
 				// Switches the dialog content
 				$( '#info-dialog' ).fadeOut( 400, function(){
 					$( '#review-dialog' ).fadeIn( 400 ).css( 'visibility', 'visible' );
 			    });
+				$( '#update-cond-form' ).hide();
 				
 				// Resizes the dialog
 				$( "#trail-info-dialog" ).dialog( "option", { width: 340 } );
@@ -136,8 +207,7 @@ nsTrailInfoDialog = function(){
 		},
 		
 		/**
-		 * Opens the trail information dialog for the 
-		 * specified trail.
+		 * Opens the trail information dialog for the specified trail.
 		 * @param objTrail {object} The specified trail
 		 */
 		openTrailDialog: function(objTrail) {
@@ -153,7 +223,7 @@ nsTrailInfoDialog = function(){
 			
 			$( '#trail-dist' ).text( 'Distance: ' + objTrail.distance + ' miles' );
 			$( '#trail-difficulty' ).text( 'Difficulty: ' + objTrail.getDifficulty() );
-			$( '#trail-condition' ).text( 'Trail Condition: ' + objTrail.condition );
+			$( '#trail-condition' ).text( 'Trail Condition: ' + objTrail.condition + ' as of ' + objTrail.condDate );
 			$( '#trail-avg-rating' ).text( 'Average Rating: ' + objTrail.getAverageRating() );
 			
 			// Gets the trail name and removes all white space
@@ -193,8 +263,46 @@ nsTrailInfoDialog = function(){
 	}
 	
 	/**
+	 * Accepts a trail condition value and updates the trail 
+	 * condition in the DOM and on the datastore. 
+	 * @param strCond {string} The trail condition; Good, Fair or Bad
+	 */
+	function updateTrailCond(strCond) {
+		
+		var strDate,
+		strMessage,
+		strTrailName,
+		objDbConn;
+		
+		// Updates the DOM
+		strDate = moment().format('DD MMM YYYY');
+		strMessage = 'Trail Condition: ' + strCond + ' as of ' + strDate;
+		$( '#trail-condition' ).text( strMessage );
+		
+		// Updates the trail object
+		strTrailName = $( '#trail-name' ).text();
+		$.each(objGlobalVars.arrTrails , function( index, value ){
+			
+			if(value.name === strTrailName){
+				
+				value.condition = strCond;
+				value.condDate = strDate;
+				
+				value.symbCondition();
+				
+				// Updates the back end datastore
+				objDbConn = new Firebase('https://radiant-torch-5066.firebaseio.com/trails/' + strTrailName.replace(" ", ""));
+				objDbConn.update({
+					condition: strCond, 
+					condition_date: strDate,
+				});
+			}
+		});
+	}
+	
+	/**
 	 * Transitions from the review submission form DIV to the 
-	 * trail info DIV on the trial information dialog
+	 * trail info DIV on the trail information dialog
 	 */
 	function showTrailInfoDiv() {
 		

@@ -288,10 +288,13 @@ nsTrailInfoDialog = function(){
 				value.condition = strCond;
 				value.condDate = strDate;
 				
-				value.symbCondition();
+				// Updates the trail icon if trails are displayed by condition
+				if (nsLegend.getCurrentLegend() === 'CONDITION'){
+					value.symbCondition();
+				}
 				
 				// Updates the back end datastore
-				objDbConn = new Firebase('https://radiant-torch-5066.firebaseio.com/trails/' + strTrailName.replace(" ", ""));
+				objDbConn = new Firebase('https://radiant-torch-5066.firebaseio.com/trails/' + strTrailName.replace(/ /g, ""));
 				objDbConn.update({
 					condition: strCond, 
 					condition_date: strDate,

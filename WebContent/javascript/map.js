@@ -26,9 +26,9 @@ nsMap = function(){
 			
 			// Creates the map
 			var map = new L.map(div, {
-				center: [38.892017,-77.042938],
+				center: [38.942017,-77.042938],
 				zoom: 10,
-				minZoom: 10,
+				minZoom: 9,
 				zoomControl: true,
 			});
 			

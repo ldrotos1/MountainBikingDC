@@ -22,6 +22,14 @@ nsLegend = function(){
 	return {
 		
 		/**
+		 * Returns a string indicating which legend is being shown
+		 * @return {string} The legend being shown.
+		 */
+		getCurrentLegend: function() {
+			return this.type;
+		},
+		
+		/**
 		 * Fades to the default legend if it is not already visible
 		 */
 		showDefaultLegend: function() {

@@ -90,18 +90,6 @@ header h1 {
 	margin-left: 1.25em;
 }
 
-#search-name-control {
-	margin-top: 2px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 4px;
-	background-color: #F3F3F3;
-	border-bottom-color: #DADADA;
-	border-right-color: #DADADA;
-	font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
-	color: #2e6e9e;
-}
-
 #help-dialog {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #245C83;

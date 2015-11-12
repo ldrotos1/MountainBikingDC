@@ -35,10 +35,16 @@ $( window ).load(function() {
 			objGlobalVars.arrTrails.push(trail);
 		});
 		
+		// Adds the trail names to the select by trail menu
+		var menuNode = $( '#select-name-control' )
+		$.each(arrNames, function(index, value){
+			menuNode.prepend( "<option>" + value + "</option>" );
+		})
+		
 		// Initializes the search by name control
-		$( "#search-name-control" ).autocomplete({
-			source: arrNames,
-			select: function( event, ui ) {
+		$( "#select-name-control" ).selectmenu({
+			width: 150,
+			change: function( event, ui ) {
 				
 				var strVal,
 				objCoord;

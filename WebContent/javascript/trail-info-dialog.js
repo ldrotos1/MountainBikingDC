@@ -59,13 +59,7 @@ nsTrailInfoDialog = function(){
 			);
 			
 			// Wires events for the update trail button click
-			$( '#trail-cond-update' ).click(function( event ){
-				
-				// Flashes the update button 
-				$(event.target).css('color', '#FFFF00')
-				setTimeout(function(){ 
-					$(event.target).css('color', '#0B1C27')
-				}, 100);
+			$( '#trail-cond-update' ).button().click(function( event ){
 				
 				// Sets the radio button checked states
 				var currentCond = $( '#trail-condition' ).text();

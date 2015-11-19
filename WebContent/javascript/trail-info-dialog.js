@@ -215,10 +215,11 @@ nsTrailInfoDialog = function(){
 			$( '#trail-address-one' ).text( objTrail.address );
 			$( '#trail-address-two' ).text( objTrail.city + ', ' + objTrail.state + ' ' + objTrail.zip );
 			
-			$( '#trail-dist' ).text( 'Distance: ' + objTrail.distance + ' miles' );
-			$( '#trail-difficulty' ).text( 'Difficulty: ' + objTrail.getDifficulty() );
-			$( '#trail-condition' ).text( 'Trail Condition: ' + objTrail.condition + ' as of ' + objTrail.condDate );
-			$( '#trail-avg-rating' ).text( 'Average Rating: ' + objTrail.getAverageRating() );
+			$( '#trail-dist' ).text( objTrail.distance + ' miles' );
+			$( '#trail-difficulty' ).text( objTrail.getDifficulty() );
+			$( '#trail-condition' ).text( objTrail.condition );
+			$( '#cond-update-date').text(' as of ' + objTrail.condDate )
+			$( '#trail-avg-rating' ).text( objTrail.getAverageRating() );
 			
 			// Gets the trail name and removes all white space
 			strTrailName = objTrail.name;
@@ -264,14 +265,13 @@ nsTrailInfoDialog = function(){
 	function updateTrailCond(strCond) {
 		
 		var strDate,
-		strMessage,
 		strTrailName,
 		objDbConn;
 		
 		// Updates the DOM
 		strDate = moment().format('DD MMM YYYY');
-		strMessage = 'Trail Condition: ' + strCond + ' as of ' + strDate;
-		$( '#trail-condition' ).text( strMessage );
+		$( '#trail-condition' ).text( strCond );
+		$( '#cond-update-date' ).text( ' as of ' + strDate );
 		
 		// Updates the trail object
 		strTrailName = $( '#trail-name' ).text();

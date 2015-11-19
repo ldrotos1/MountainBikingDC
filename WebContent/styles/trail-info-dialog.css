@@ -10,7 +10,7 @@
 }
 
 #trail-name {
-	font-size: 2.15em;
+	font-size: 2.25em;
 	font-weight: bold;
 	padding-bottom: 0.20em;
 }
@@ -22,6 +22,14 @@
 #trail-info {
 	font-size: 1.5em;
 	padding-top: 0.5em;
+}
+
+.trail-info-title {
+	font-weight: bold;
+}
+
+#trail-condition {
+	text-decoration: underline;
 }
 
 #trail-cond-update {
@@ -36,13 +44,22 @@
 	padding-bottom: 0.5em;
 }
 
+#set-cond-title {
+	font-weight: bold;
+	padding-bottom: 0.50em;
+}
+
+.rdb-update-cond {
+	margin-left: 1em;
+}
+
 #btn-update-cond, #btn-cancel-cond {
 	font-size: 0.75em;
-	padding-top: 
+	margin-top: 0.50em;
 }
 
 #trail-reviews {
-	padding-top: 0.75em;
+	padding-top: 1.40em;
 }
 
 #trail-reviews-title {

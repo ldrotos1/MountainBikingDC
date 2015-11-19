@@ -103,21 +103,23 @@
 					<span id='trail-address-two'></span>
 				</div>
 				<div id='trail-info'>
-					<span id='trail-dist'></span><br>
-					<span id='trail-difficulty'></span><br>
-					<span id='trail-condition'></span><button id='trail-cond-update'>update</button><br>
+					<span class="trail-info-title">Distance: </span><span id='trail-dist'></span><br>
+					<span class="trail-info-title">Difficulty: </span><span id='trail-difficulty'></span><br>
+					<span class="trail-info-title">Condition: </span><span id='trail-condition'></span>
+					<span id='cond-update-date'></span>
+					<button id='trail-cond-update'>update</button><br>
 					<div id='update-cond-form'>
-						<span>Set Condition</span><br>
-						<input type="radio" name="condition" value="Good">Good - Dry<br>
-						<input type="radio" name="condition" value="Fair">Fair - Some wet spots<br>
-						<input type="radio" name="condition" value="Bad">Bad - Muddy<br>
+						<span id='set-cond-title'>Set Condition</span><br>
+						<input class='rdb-update-cond' type="radio" name="condition" value="Good">Good - Dry<br>
+						<input class='rdb-update-cond' type="radio" name="condition" value="Fair">Fair - Some wet spots<br>
+						<input class='rdb-update-cond' type="radio" name="condition" value="Bad">Bad - Muddy<br>
 						<button id='btn-update-cond'>Update</button>
 						<button id='btn-cancel-cond'>Cancel</button>
 					</div>
-					<span id='trail-avg-rating'></span>
+					<span class="trail-info-title">Average Rating: </span><span id='trail-avg-rating'></span>
 				</div>
 				<div id='trail-reviews'>
-					<span id='trail-reviews-title'>Trail Reviews:</span>
+					<span id='trail-reviews-title' class='trail-info-title'>Trail Reviews:</span>
 					<div id='trail-reviews-list'>
 					</div>
 				</div>

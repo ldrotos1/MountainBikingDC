@@ -65,10 +65,17 @@ header h1 {
 }
 
 .control-label {
-	font-size: 1.15em;
+	font-size: 1.25em;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-weight: bold;
 	color: #245C83; 
+}
+
+.control-sub-label {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-weight: bold;
+	color: #245C83; 
+	padding-left: 0.75em;
 }
 
 #search-container {
@@ -92,6 +99,37 @@ header h1 {
 
 #filter-container {
 	clear:left;
+	padding-top: 0.75em;
+	margin-left: 1.25em;
+	margin-bottom: 0.50em;
+	margin-right: 1.25em;
+}
+
+#difficulty-checkbox-container {
+	margin-top: 0.50em;
+}
+
+#rating-slider-container {
+	margin-top: 0.50em;
+}
+
+#rating-slider {
+	margin-top: 0.25em;
+	margin-left: 0.75em;
+}
+
+.ui-slider-range {
+	background: #599fcf !important;
+}
+
+.ui-slider-label {
+	color: #599fcf !important;
+	font-weight: bold;
+}
+
+#btn-reset-filter {
+	margin-top: 1.25em;
+	margin-left: 0.75em;
 }
 
 #help-dialog {

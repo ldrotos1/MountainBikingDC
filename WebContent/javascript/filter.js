@@ -9,6 +9,9 @@
 $( window ).load(function() {
 	
 	// Initializes filter controls
+	//$( "#condition-checkbox-container" ).buttonset();
+	//$( "#format" ).buttonset();
+	
 	$("#rating-slider").slider({
 		range:true,
 		min: 1, 
@@ -21,7 +24,7 @@ $( window ).load(function() {
 		rest:"label"
 	})
 	
-	
+	$( '#btn-reset-filter' ).button();
 	
 	// Wires the event handlers for the filter controls
 	$( '.filter-checkbox' ).change(function(evt){

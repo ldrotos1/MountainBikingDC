@@ -56,25 +56,24 @@
 			</div>
 			
 			<div id='filter-container'>
-				<div>
-					<span>Filter Trails by:</span>
+				<span class='control-label'>Filter Trails by:</span><br>
+				
+				
+				<div id='condition-checkbox-container'>
+					<span class='control-sub-label'>Condition: </span>
+  					<input class="filter-checkbox" type="checkbox" id="Good" checked><label for='Good'>Good</label>
+  					<input class="filter-checkbox" type="checkbox" id="Fair" checked><label for='Fair'>Fair</label>
+  					<input class="filter-checkbox" type="checkbox" id="Bad" checked><label for='Bad'>Bad</label>
 				</div>
 				
-				<div>
-					<span>Condition: </span>
-					<input class="filter-checkbox" type="checkbox" name="condition" value="Good" checked><label>Good</label>
-  					<input class="filter-checkbox" type="checkbox" name="condition" value="Fair" checked><label>Fair</label>
-  					<input class="filter-checkbox" type="checkbox" name="condition" value="Bad" checked><label>Bad</label>
+				<div id='difficulty-checkbox-container'>
+					<span class='control-sub-label'>Difficulty: </span>
+					<input class="filter-checkbox" type="checkbox" id="beginner" checked><label for='beginner'>Beginner</label>
+  					<input class="filter-checkbox" type="checkbox" id="intermediate" checked><label for='intermediate'>Intermediate</label>
+  					<input class="filter-checkbox" type="checkbox" id="advanced" checked><label for='advanced'>Advanced</label>
 				</div>
-				
-				<div>
-					<span>Difficulty: </span>
-					<input class="filter-checkbox" type="checkbox" name="difficulty" value="beginner" checked><label>Beginner</label>
-  					<input class="filter-checkbox" type="checkbox" name="difficulty" value="intermediate" checked><label>Intermediate</label>
-  					<input class="filter-checkbox" type="checkbox" name="difficulty" value="advanced" checked><label>Advanced</label>
-				</div>
-				<div>
-					<span>Average Rating: </span>
+				<div id='rating-slider-container'>
+					<span class='control-sub-label'>Average Rating: </span>
 					<div id="rating-slider"></div>
 				</div>
 				<div>

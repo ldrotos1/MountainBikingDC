@@ -90,6 +90,10 @@ header h1 {
 	margin-left: 1.25em;
 }
 
+#filter-container {
+	clear:left;
+}
+
 #help-dialog {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #245C83;

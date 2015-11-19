@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.structure.css">
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.theme.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui-slider-pips.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-info-dialog.css">
 	<link rel="stylesheet" type="text/css" href="styles/legend.css">
@@ -14,12 +15,14 @@
 	<script type="text/javascript" src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="javascript/moment.min.js"></script>
+	<script type="text/javascript" src="javascript/jquery-ui-slider-pips.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
 	<script type="text/javascript" src="javascript/trail-info-dialog.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
 	<script type="text/javascript" src="javascript/setup.js"></script>
 	<script type="text/javascript" src="javascript/legend.js"></script>
+	<script type="text/javascript" src="javascript/filter.js"></script>
 	<title>D.C. Mountain Biking</title>
 </head>
 <body>
@@ -33,7 +36,7 @@
 	
 		<!-- Controls pane -->
 		<div id='controls-pane'>
-	
+			
 			<div id='search-container'>
 				<span class='control-label'>Select by Name:</span><br>
 				<select id='select-name-control'></select>
@@ -45,11 +48,6 @@
 					<option selected="selected">Default</option>
 					<option>Trail Condition</option>
 					<option>Average Rating</option>
-					<optgroup label="Difficulty">
-						<option>Beginner</option>
-						<option>Intermediate</option>
-						<option>Advanced</option>
-					</optgroup>
 				</select>
 			</div>
 			
@@ -57,6 +55,32 @@
 				<button id='help-button'>Help</button>
 			</div>
 			
+			<div id='filter-container'>
+				<div>
+					<span>Filter Trails by:</span>
+				</div>
+				
+				<div>
+					<span>Condition: </span>
+					<input class="filter-checkbox" type="checkbox" name="condition" value="Good" checked><label>Good</label>
+  					<input class="filter-checkbox" type="checkbox" name="condition" value="Fair" checked><label>Fair</label>
+  					<input class="filter-checkbox" type="checkbox" name="condition" value="Bad" checked><label>Bad</label>
+				</div>
+				
+				<div>
+					<span>Difficulty: </span>
+					<input class="filter-checkbox" type="checkbox" name="difficulty" value="beginner" checked><label>Beginner</label>
+  					<input class="filter-checkbox" type="checkbox" name="difficulty" value="intermediate" checked><label>Intermediate</label>
+  					<input class="filter-checkbox" type="checkbox" name="difficulty" value="advanced" checked><label>Advanced</label>
+				</div>
+				<div>
+					<span>Average Rating: </span>
+					<div id="rating-slider"></div>
+				</div>
+				<div>
+					<button id='btn-reset-filter'>Reset Filter</button>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Legend pane -->
@@ -113,7 +137,7 @@
 				<div id='reviewer-rating-container'>
 					<label for='reviewer-rating' class='review-label'>Rating:</label>
   					<input id='reviewer-rating' name='rating'>
-  					<span> (1 - 5)</span>
+  					<span> (1 to 5 stars)</span>
   					<span id='review-required-rating' class='review-required'>&#42; required</span>
 				</div>
 				<div id='reviewer-comments-container'>

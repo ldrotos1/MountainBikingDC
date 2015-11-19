@@ -157,6 +157,16 @@ $( window ).load(function() {
 		$( '#help-button' ).button().click(function(){
 			$( '#help-dialog' ).dialog( 'open' );
 		});
+		
+		// Wires methods for disabling map panning when cursor
+		// is hovering over control pane
+		$( "#controls-pane" ).mouseenter(function() {
+			objGlobalVars.objMap.dragging.disable();
+		});
+		
+		$( "#controls-pane" ).mouseleave(function() {
+			objGlobalVars.objMap.dragging.enable();
+		});
 	});
 });
 	

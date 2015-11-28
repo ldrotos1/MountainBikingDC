@@ -25,8 +25,8 @@ nsMap = function(){
 			setLoadingGifPosition(div);
 			
 			// Creates the map bounds object
-			var southWest = L.latLng(38.265297, -78.974454),
-		    northEast = L.latLng(39.731461, -75.399855),
+			var southWest = L.latLng(37.902113, -79.131942),
+		    northEast = L.latLng(39.827281, -74.901855),
 		    bounds = L.latLngBounds(southWest, northEast);
 			
 			// Creates the map
@@ -48,6 +48,11 @@ nsMap = function(){
 			});
 			
 			lyr.addTo(map);
+			
+			// Creates the map's home button
+			L.easyButton( '<img class="map-btn" src="styles/images/home.png">', function(){
+				  map.setView([38.942017,-77.042938], 10);
+			}).addTo(map);
 			
 			// Resizes map when window is resized
 			$( window ).resize(function() {

@@ -24,12 +24,18 @@ nsMap = function(){
 			setMapHeight();
 			setLoadingGifPosition(div);
 			
+			// Creates the map bounds object
+			var southWest = L.latLng(38.265297, -78.974454),
+		    northEast = L.latLng(39.731461, -75.399855),
+		    bounds = L.latLngBounds(southWest, northEast);
+			
 			// Creates the map
 			var map = new L.map(div, {
 				center: [38.942017,-77.042938],
 				zoom: 10,
 				minZoom: 9,
 				zoomControl: true,
+				maxBounds: bounds
 			});
 			
 			// Creates and adds the base layer to the map

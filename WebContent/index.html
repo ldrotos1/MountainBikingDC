@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.theme.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/jquery-ui-slider-pips.css">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-info-dialog.css">
 	<link rel="stylesheet" type="text/css" href="styles/legend.css">
@@ -63,19 +64,26 @@
 				
 				<div id='condition-checkbox-container'>
 					<span class='control-sub-label'>Condition: </span>
-  					<input class="filter-checkbox" type="checkbox" id="Good" checked><label for='Good'>Good</label>
-  					<input class="filter-checkbox" type="checkbox" id="Fair" checked><label for='Fair'>Fair</label>
-  					<input class="filter-checkbox" type="checkbox" id="Bad" checked><label for='Bad'>Bad</label>
+  					<input class="filter-checkbox" type="checkbox" id="Good" checked>
+  					<label class='filter-text' for='Good'>Good</label>
+  					<input class="filter-checkbox" type="checkbox" id="Fair" checked>
+  					<label class='filter-text' for='Fair'>Fair</label>
+  					<input class="filter-checkbox" type="checkbox" id="Bad" checked>
+  					<label class='filter-text' for='Bad'>Bad</label>
 				</div>
 				
 				<div id='difficulty-checkbox-container'>
 					<span class='control-sub-label'>Difficulty: </span>
-					<input class="filter-checkbox" type="checkbox" id="beginner" checked><label for='beginner'>Beginner</label>
-  					<input class="filter-checkbox" type="checkbox" id="intermediate" checked><label for='intermediate'>Intermediate</label>
-  					<input class="filter-checkbox" type="checkbox" id="advanced" checked><label for='advanced'>Advanced</label>
+					<input class="filter-checkbox" type="checkbox" id="beginner" checked>
+					<label class='filter-text' for='beginner'>Beginner</label>
+  					<input class="filter-checkbox" type="checkbox" id="intermediate" checked>
+  					<label class='filter-text' for='intermediate'>Intermediate</label>
+  					<input class="filter-checkbox" type="checkbox" id="advanced" checked>
+  					<label class='filter-text' for='advanced'>Advanced</label>
 				</div>
 				<div id='rating-slider-container'>
 					<span class='control-sub-label'>Average Rating: </span>
+					<span id='rating-range-label' class='filter-text'>1 Star to 5 Stars</span>
 					<div id="rating-slider"></div>
 				</div>
 				<div>
@@ -137,12 +145,23 @@
 					<input type="text" id='reviewer-name' name='name'>
 					<span id='review-required-name' class='review-required'>&#42; required</span>
 				</div>
-				<div id='reviewer-rating-container'>
+				<!-- <div id='reviewer-rating-container'>
 					<label for='reviewer-rating' class='review-label'>Rating:</label>
   					<input id='reviewer-rating' name='rating'>
   					<span> (1 to 5 stars)</span>
   					<span id='review-required-rating' class='review-required'>&#42; required</span>
+				</div>  -->
+				
+				<div id='reviewer-rating-container'>
+					<label for='reviewer-rating' class='review-label'>Rating:</label>
+  					<span class="empty-star"></span>
+  					<span class="empty-star"></span>
+  					<span class="empty-star"></span>
+  					<span class="empty-star"></span>
+  					<span class="empty-star"></span>
+  					<span id='review-required-rating' class='review-required'>&#42; required</span>
 				</div>
+				
 				<div id='reviewer-comments-container'>
 					<label for='reviewer-comments' class='review-label'>Comments:</label>
 					<textarea id='reviewer-comments' name='comments' cols='40' rows='5'></textarea>

@@ -43,6 +43,7 @@ nsMap = function(){
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy <a href="http://mapbox.com">Mapbox</a>',
 			});
 			
+			// Removes the loading spinner once the map is loaded
 			lyr.on( 'load', function(e) {
 				$( '#loading-spinner' ).css( 'visibility', 'hidden' );
 			});

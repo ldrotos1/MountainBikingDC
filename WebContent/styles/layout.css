@@ -75,7 +75,14 @@ header h1 {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-weight: bold;
 	color: #245C83; 
+	font-size: 1.10em;
 	padding-left: 0.75em;
+}
+
+.filter-text {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #245C83;
+	font-size: 1.10em;
 }
 
 #search-container {
@@ -103,7 +110,7 @@ header h1 {
 	margin-left: 1.25em;
 	margin-bottom: 0.50em;
 	margin-right: 1.25em;
-}
+}	
 
 #difficulty-checkbox-container {
 	margin-top: 0.50em;

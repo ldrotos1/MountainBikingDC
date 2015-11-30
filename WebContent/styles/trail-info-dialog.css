@@ -127,4 +127,18 @@ textarea {
 	width: 11em;
 }
 
+.empty-star {
+	background:url(images/stars/star-empty.png) no-repeat center center;
+	display: inline-block;
+	background-size: 15px 15px;
+	height: 15px;
+	width: 15px;
+}
+
+.full-star {
+	
+}
+
+
+
 

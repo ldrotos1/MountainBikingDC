@@ -9,9 +9,6 @@
 $( window ).load(function() {
 	
 	// Initializes filter controls
-	//$( "#condition-checkbox-container" ).buttonset();
-	//$( "#format" ).buttonset();
-	
 	$("#rating-slider").slider({
 		range:true,
 		min: 1, 
@@ -58,6 +55,9 @@ nsFilter = function(){
 			boolBegin = arrCheckBoxes[3].checked;
 			boolInterm = arrCheckBoxes[4].checked;
 			boolAdv = arrCheckBoxes[5].checked;
+			
+			// Updates the rating slider label 
+			setSliderLabel(numLower, numUpper);
 			
 			// Determine if trail should be filtered out or in
 			$.each( arrTrails, function(index, trail){
@@ -124,6 +124,7 @@ nsFilter = function(){
 			
 			// Resets slider
 			$("#rating-slider").slider( "values", 0, 1 ).slider( "values", 1, 5 );
+			setSliderLabel(1, 5);
 			
 			// Sets all the trails as being filtered in
 			$.each( arrTrails, function(index, item){
@@ -131,4 +132,69 @@ nsFilter = function(){
 			});
 		}
 	}
+	
+	/**
+	 * Updates the rating slider label for a new specified range
+	 * @param numLow {number} The lower value of the range
+	 * @param numHigh {number} The upper value of the range 
+	 */
+	function setSliderLabel(numLow, numHigh) {
+		
+		var strLabel;
+		
+		if (numLow === numHigh) {
+		
+			strLabel = getRatingLabel(numLow);
+			
+		} else {
+			
+			strLabel = getRatingLabel(numLow) + " to " + getRatingLabel(numHigh);
+		}
+			
+		$( '#rating-range-label' ).text( strLabel );
+	}
+	
+	/**
+	 * Provides the label for a specified rating number
+	 * @param numValue {number} The rating number
+	 * @returns {string} The rating label
+	 */
+	function getRatingLabel(numValue) {
+	
+		if (numValue === 1) {
+			return "1 Star";
+		}
+		else if (numValue === 2) {
+			return "2 Stars";
+		}
+		else if (numValue === 3) {
+			return "3 Stars";
+		}
+		else if (numValue === 4) {
+			return "4 Stars";
+		}
+		else if (numValue === 5) {
+			return "5 Stars";
+		}
+		else {
+			return "";
+		}
+	}
 }();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

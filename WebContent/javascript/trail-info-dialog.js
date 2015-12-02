@@ -8,6 +8,9 @@
 
 nsTrailInfoDialog = function(){
 	
+	/**
+	 * Public functions
+	 */
 	return {
 		
 		/**
@@ -31,32 +34,11 @@ nsTrailInfoDialog = function(){
 		    	}
 		    });
 			
-			// Initializes the ratings spinner
-			$( "#reviewer-rating" ).spinner({
-				min:1,
-				max:5
-			});
-			
-			// Prevents user input
-			$( "#reviewer-rating" ).bind("keydown", function (event) {
-			    event.preventDefault();
-			});
-			
 			// Initializes the trail update form
 			$( '#update-cond-form' ).hide();
 			
 			$('#btn-update-cond').button();
 			$('#btn-cancel-cond').button();
-			
-			// Wires events for the update trail button hover
-			$( '#trail-cond-update' ).hover( 
-					function( event ) {
-						$(event.target).css('color', '#0B1C27').css('cursor', 'pointer');
-					},
-					function( event ) {
-						$(event.target).css('color', '#245C83').css('cursor', 'default');
-					}
-			);
 			
 			// Wires events for the update trail button click
 			$( '#trail-cond-update' ).button().click(function( event ){
@@ -118,13 +100,197 @@ nsTrailInfoDialog = function(){
 				$( '#update-cond-form' ).hide();
 				
 				// Resizes the dialog
-				$( "#trail-info-dialog" ).dialog( "option", { width: 340 } );
+				$( "#trail-info-dialog" ).dialog( "option", { width: 400 } );
+				
+				// Resets the trail rating
+				resetRatingStars();
 			});
 			
 			// Closes the dialog
 			$( '#btn-info-close' ).button().click( function() {
 				
 				$( '#trail-info-dialog' ).dialog( 'close' );
+				resetRatingStars();
+			});
+			
+			// Wires rating star hover on/off events
+			$( ".rating-star" ).hover(
+				function() {
+					
+					if (this.id === 'one-star') {
+						
+						$( this ).addClass( "hover-star" );
+					}
+					else if (this.id === 'two-star') {
+						
+						$( this ).addClass( "hover-star" );
+						$( '#one-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+					}
+					else if (this.id === 'three-star') {
+						
+						$( this ).addClass( "hover-star" );
+						$( '#one-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#two-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+					}
+					else if (this.id === 'four-star') {
+						
+						$( this ).addClass( "hover-star" );
+						$( '#one-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#two-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#three-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+					}
+					else if (this.id === 'five-star') {
+						
+						$( this ).addClass( "hover-star" );
+						$( '#one-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#two-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#three-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+						$( '#four-star' ).addClass( "hover-star" ).removeClass( "empty-star full-star" );
+					}
+					else {
+						console.log("Error: Invalid rating star ID.");
+					}
+					$( this ).removeClass( "empty-star full-star" );
+
+				}, function() {
+					
+					var numRating = objGlobalVars.numRating;
+					
+					if (numRating === 0) {
+						
+						$( '.rating-star' ).addClass( "empty-star" );
+					}
+					else if (numRating === 1) {
+						
+						$( '#one-star' ).addClass( "full-star" );
+						$( '#two-star' ).addClass( "empty-star" );
+						$( '#three-star' ).addClass( "empty-star" );
+						$( '#four-star' ).addClass( "empty-star" );
+						$( '#five-star' ).addClass( "empty-star" );
+					}
+					else if (numRating === 2) {
+						
+						$( '#one-star' ).addClass( "full-star" );
+						$( '#two-star' ).addClass( "full-star" );
+						$( '#three-star' ).addClass( "empty-star" );
+						$( '#four-star' ).addClass( "empty-star" );
+						$( '#five-star' ).addClass( "empty-star" );
+					}
+					else if (numRating === 3) {
+						
+						$( '#one-star' ).addClass( "full-star" );
+						$( '#two-star' ).addClass( "full-star" );
+						$( '#three-star' ).addClass( "full-star" );
+						$( '#four-star' ).addClass( "empty-star" );
+						$( '#five-star' ).addClass( "empty-star" );
+					}
+					else if (numRating === 4) {
+						
+						$( '#one-star' ).addClass( "full-star" );
+						$( '#two-star' ).addClass( "full-star" );
+						$( '#three-star' ).addClass( "full-star" );
+						$( '#four-star' ).addClass( "full-star" );
+						$( '#five-star' ).addClass( "empty-star" );
+					}
+					else if (numRating === 5) {
+						
+						$( '.rating-star' ).addClass( "full-star" );
+					}
+					else {
+						console.log("Error: Invalid rating star number.");
+					}
+					
+					$( '.rating-star' ).removeClass( "hover-star" );
+				}
+			);
+			
+			// Wires the rating star click events
+			$( ".rating-star" ).click(function(evt){
+				
+				var strRating = evt.target.id;
+				if (strRating === 'one-star') {
+					
+					objGlobalVars.numRating = 1;
+					
+					$( '#one-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					
+					setTimeout(function(){
+						$( "#one-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						
+						$( '#two-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#three-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#four-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#five-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+					}, 100)
+					
+				}
+				else if (strRating === 'two-star') {
+					
+					objGlobalVars.numRating = 2;
+					
+					$( '#one-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#two-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					
+					setTimeout(function(){
+						$( "#one-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#two-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						
+						$( '#three-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#four-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#five-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+					}, 100)
+				}
+				else if (strRating === 'three-star') {
+					
+					objGlobalVars.numRating = 3;
+					
+					$( '#one-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#two-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#three-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					
+					setTimeout(function(){
+						$( "#one-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#two-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#three-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						
+						$( '#four-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+						$( '#five-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+					}, 100)
+				}
+				else if (strRating === 'four-star') {
+					
+					objGlobalVars.numRating = 4;
+					
+					$( '#one-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#two-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#three-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					$( '#four-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					
+					setTimeout(function(){
+						$( "#one-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#two-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#three-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						$( "#four-star" ).addClass( "full-star" ).removeClass( "click-star" );
+						
+						$( '#five-star' ).addClass( "empty-star" ).removeClass( "full-star" );
+					}, 100)
+				}
+				else if (strRating === 'five-star') {
+					
+					objGlobalVars.numRating = 5;
+					
+					$( '.rating-star' ).addClass( "click-star" ).removeClass( "hover-star" );
+					
+					setTimeout(function(){
+						$( ".rating-star" ).addClass( "full-star" ).removeClass( "click-star" );
+					}, 100)
+				}
+				else {
+					console.log("Error: Invalid rating star ID.");
+				}
+				
+				// Moves focus to the comments text area
+				$( "#reviewer-comments" ).focus();
 			});
 			
 			// Submits the review
@@ -142,20 +308,19 @@ nsTrailInfoDialog = function(){
 				
 				// Gets the user inputs 
 				strName = $( '#reviewer-name' ).val();
-				strRating = $( '#reviewer-rating' ).val();
 				strComment = $( '#reviewer-comments' ).val();
-				numRating = parseInt(strRating);
+				numRating = objGlobalVars.numRating;
 				
 				if (strComment === '') {
 					strComment = "No comments provided.";
 				}
 				
 				// Validates inputs
-				if (strName === '' || strRating === '') {
+				if (strName === '' || numRating === 0) {
 				
 					alert("Please provide at least a name and a rating.");
 				}
-				else if (numRating < 1 || numRating > 5 || isNaN(numRating)){
+				else if (numRating < 1 || numRating > 5 ){
 					
 					alert("The rating must be between 1 and 5.");
 				}
@@ -166,7 +331,7 @@ nsTrailInfoDialog = function(){
 					strReviewDom = "<div class=\'middle-trail-review\'>";
 					strReviewDom += "<span>" + strName + "</span><br>";
 					strReviewDom += "<span>" + strDate + "</span><br>";
-					strReviewDom += "<span>" + strRating + " out of 5</span><br>";
+					strReviewDom += "<span>" + numRating + " out of 5 Stars</span><br>";
 					strReviewDom += "<p>" + strComment + "</p>";
 					strReviewDom += "</div>";
 					$( "#trail-reviews-list" ).prepend( strReviewDom );
@@ -188,15 +353,19 @@ nsTrailInfoDialog = function(){
 					objNewReview.set({ 
 						'name': strName, 
 						'date': strDate,
-						'rating': strRating, 
+						'rating': numRating.toString(), 
 						'comments': strComment
 					});
+					
+					// Resets rating value
+					resetRatingStars();
 				}
 			});
 			
 			// Shows the station info DIV
 			$( '#btn-review-cancel' ).button().click( function() {
 				showTrailInfoDiv();
+				resetRatingStars();
 			});
 		},
 		
@@ -239,7 +408,7 @@ nsTrailInfoDialog = function(){
 					strReviewDom = "<div class=\'middle-trail-review\'>";
 					strReviewDom += "<span>" + value.name + "</span><br>";
 					strReviewDom += "<span>" + value.date + "</span><br>";
-					strReviewDom += "<span>" + value.rating + " out of 5</span><br>";
+					strReviewDom += "<span>" + value.rating + " out of 5 Stars</span><br>";
 					strReviewDom += "<p>" + value.comments + "</p>";
 					strReviewDom += "</div>";
 			
@@ -254,6 +423,9 @@ nsTrailInfoDialog = function(){
 			
 			// Shows the dialog
 			$( '#trail-info-dialog' ).dialog( 'open' );
+			
+			// Resets the trail rating
+			resetRatingStars();
 		}
 	}
 	
@@ -315,5 +487,16 @@ nsTrailInfoDialog = function(){
 		$( '#reviewer-name' ).val( '' );
 		$( '#reviewer-rating' ).val( '' );
 		$( '#reviewer-comments' ).val( '' );
+		
+		// Resets the trail rating
+		resetRatingStars();
+	}
+	
+	/**
+	 * Resets the rating stars so that they are empty
+	 */
+	function resetRatingStars(){
+		objGlobalVars.numRating = 0;
+		$( ".rating-star" ).addClass( "empty-star" ).removeClass( "full-star" );
 	}
 }();

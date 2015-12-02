@@ -89,7 +89,7 @@
 
 .review-label {
 	float: left;
-	width: 5em;
+	width: 7.5em;
 	text-align: right;
 	padding-right: 1em;
 }
@@ -135,8 +135,29 @@ textarea {
 	width: 15px;
 }
 
+.hover-star {
+	background:url(images/stars/star-hover.png) no-repeat center center;
+	display: inline-block;
+	background-size: 15px 15px;
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+}
+
+.click-star {
+	background:url(images/stars/star-click.png) no-repeat center center;
+	display: inline-block;
+	background-size: 15px 15px;
+	height: 15px;
+	width: 15px;
+}
+
 .full-star {
-	
+	background:url(images/stars/star-full.png) no-repeat center center;
+	display: inline-block;
+	background-size: 15px 15px;
+	height: 15px;
+	width: 15px;
 }
 
 

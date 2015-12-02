@@ -170,19 +170,19 @@ Trail.prototype = {
 				return 'Trail not rated'
 			}
 			else if (numRating === 1) {
-				return '1 out of 5'
+				return '1 out of 5 Stars'
 			}
 			else if (numRating === 2) {
-				return '2 out of 5'
+				return '2 out of 5 Stars'
 			}
 			else if (numRating === 3) {
-				return '3 out of 5'
+				return '3 out of 5 Stars'
 			}
 			else if (numRating === 4) {
-				return '4 out of 5'
+				return '4 out of 5 Stars'
 			}
 			else if (numRating === 5) {
-				return '5 out of 5'
+				return '5 out of 5 Stars'
 			}
 		},
 		

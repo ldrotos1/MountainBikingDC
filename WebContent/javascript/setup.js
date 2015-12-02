@@ -163,9 +163,11 @@ $( window ).load(function() {
 		$( "#controls-pane, #legend-pane" ).hover(
 			function(){
 				objGlobalVars.objMap.dragging.disable();
+				objGlobalVars.objMap.doubleClickZoom.disable();
 			},
 			function(){
 				objGlobalVars.objMap.dragging.enable();
+				objGlobalVars.objMap.doubleClickZoom.enable();
 			}
 		);
 		

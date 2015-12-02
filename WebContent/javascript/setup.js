@@ -155,18 +155,22 @@ $( window ).load(function() {
 		});
 		
 		$( '#help-button' ).button().click(function(){
-			$( '#help-dialog' ).dialog( 'open' );
+			$( '#help-dialog' ).css( 'visibility', 'visible' ).dialog( 'open' );
 		});
 		
 		// Wires methods for disabling map panning when cursor
 		// is hovering over control pane
-		$( "#controls-pane" ).mouseenter(function() {
-			objGlobalVars.objMap.dragging.disable();
-		});
+		$( "#controls-pane, #legend-pane" ).hover(
+			function(){
+				objGlobalVars.objMap.dragging.disable();
+			},
+			function(){
+				objGlobalVars.objMap.dragging.enable();
+			}
+		);
 		
-		$( "#controls-pane" ).mouseleave(function() {
-			objGlobalVars.objMap.dragging.enable();
-		});
+		// Displays the control pane
+		$( '#controls-pane' ).fadeIn( "slow" );
 	});
 });
 	

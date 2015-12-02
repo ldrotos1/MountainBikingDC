@@ -62,6 +62,8 @@ header h1 {
 	border-color: #999999;
     border-radius: 6px;
     box-shadow: 0px 0px 9px #9F9F9F;
+    display: none;
+    cursor: default;
 }
 
 .control-label {
@@ -143,6 +145,7 @@ header h1 {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #245C83;
 	font-size: 1.25em;
+	visibility: hidden;
 }
 
 #help-dialog p {

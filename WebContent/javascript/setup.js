@@ -145,19 +145,6 @@ $( window ).load(function() {
 			}
 		});
 		
-		// Initializes the help button and dialog	
-		$( '#help-dialog' ).dialog({
-			autoOpen: false,
-	    	modal: true,
-	    	resizable: false,
-	    	title: 'Application Help',
-	    	width: 400,
-		});
-		
-		$( '#help-button' ).button().click(function(){
-			$( '#help-dialog' ).css( 'visibility', 'visible' ).dialog( 'open' );
-		});
-		
 		// Wires methods for disabling map panning when cursor
 		// is hovering over control pane
 		$( "#controls-pane, #legend-pane" ).hover(

@@ -96,7 +96,7 @@ header h1 {
 #display-container {
 	float: left;
 	width: 12em;
-	margin-left: 1.25em;
+	margin-left: 2.5em;
 }
 
 #button-container {
@@ -139,17 +139,6 @@ header h1 {
 #btn-reset-filter {
 	margin-top: 1.25em;
 	margin-left: 0.75em;
-}
-
-#help-dialog {
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
-	color: #245C83;
-	font-size: 1.25em;
-	visibility: hidden;
-}
-
-#help-dialog p {
-	text-indent: 1.5em;
 }
 
 .ui-selectmenu-optgroup {

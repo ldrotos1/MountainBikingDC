@@ -140,13 +140,13 @@
 			
 			<!-- Submit review dialog -->
 			<div id='review-dialog'>
-				<div id='reviewer-name-container'>
+				<div id='reviewer-name-container' class='reviewer-input'>
 					<label for='reviewer-name' class='review-label'>Name:</label>
 					<input type="text" id='reviewer-name' name='name'>
 					<span id='review-required-name' class='review-required'>&#42; required</span>
 				</div>
 				
-				<div id='reviewer-rating-container'>
+				<div id='reviewer-rating-container' class='reviewer-input'>
 					<label for='reviewer-rating' class='review-label'>Select Rating:</label>
   					<span id="one-star" class="rating-star empty-star"></span>
   					<span id="two-star" class="rating-star empty-star"></span>
@@ -156,7 +156,7 @@
   					<span id='review-required-rating' class='review-required'>&#42; required</span>
 				</div>
 				
-				<div id='reviewer-comments-container'>
+				<div id='reviewer-comments-container' class='reviewer-input'>
 					<label for='reviewer-comments' class='review-label'>Comments:</label>
 					<textarea id='reviewer-comments' name='comments' cols='40' rows='5'></textarea>
 				</div>

@@ -87,6 +87,10 @@
 	margin-bottom: 1em;
 }
 
+#trail-reviews {
+	margin-bottom: 1.50em;
+}
+
 .review-label {
 	float: left;
 	width: 7.5em;
@@ -99,7 +103,11 @@
 }
 
 #reviewer-name-container {
-	margin-bottom: 0.75em;
+	margin-top: 1em;
+}
+
+.reviewer-input {
+	margin-bottom: 1.50em;
 }
 
 #reviewer-rating {
@@ -107,20 +115,21 @@
 }
 
 .review-required {
+	padding-left: 1em;
 	color: 	#FF0000;
 }
 
 textarea {
 	resize: none;
-	margin-top: 0.75em;
 	background-color: #E4E4E4;
 }
 
 .dialog-toolbar {
-	padding-top: 0.75em;
 	display:block;
 	text-align: center; 
 	position:relative;
+	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 .dialog-btn {

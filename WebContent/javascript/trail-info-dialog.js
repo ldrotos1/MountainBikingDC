@@ -95,6 +95,7 @@ nsTrailInfoDialog = function(){
 								
 				// Switches the dialog content
 				$( '#info-dialog' ).fadeOut( 400, function(){
+					$('#trail-info-dialog').dialog('option', 'title', 'Submit Review');
 					$( '#review-dialog' ).fadeIn( 400 ).css( 'visibility', 'visible' );
 			    });
 				$( '#update-cond-form' ).hide();
@@ -110,6 +111,7 @@ nsTrailInfoDialog = function(){
 			$( '#btn-info-close' ).button().click( function() {
 				
 				$( '#trail-info-dialog' ).dialog( 'close' );
+				$('#trail-info-dialog').dialog('option', 'title', 'Trail Information');
 				resetRatingStars();
 			});
 			
@@ -477,6 +479,7 @@ nsTrailInfoDialog = function(){
 		
 		// Fades to trail info
 		$( '#review-dialog' ).fadeOut( 400, function(){
+			$('#trail-info-dialog').dialog('option', 'title', 'Trail Information');
 			$( '#info-dialog' ).fadeIn( 400 );
 	    });
 		

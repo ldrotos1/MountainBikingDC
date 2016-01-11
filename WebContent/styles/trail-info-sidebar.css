@@ -1,0 +1,87 @@
+@CHARSET "ISO-8859-1";
+
+#trail-info-sidebar {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	padding: 0.75em;
+	background-color: #E4E4E4;
+	border: 1px solid;
+	border-color: #999999;
+    border-radius: 6px;
+    box-shadow: 0px 0px 9px #9F9F9F;
+    overflow: hidden;
+}
+
+#trail-info, #trail-reviews-list {
+	color: #245C83;
+	margin: 0.75em;
+}
+
+#trail-name {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+#detail-info {
+	margin: 1em 0em 1em 0em;	
+}
+
+.trail-info-title {
+	font-size: 1.50em;
+	font-weight: bold;
+}
+
+.trail-info-content {
+	font-size: 1.25em;
+}
+
+#trail-condition {
+	text-decoration: underline;
+}
+
+#avg-rating-row {
+	padding-bottom: 1em;
+}
+
+#trail-reviews-list {
+	height: 0px;
+	overflow-y: scroll;
+	background-color: #f2f2f2;
+	border-color: #aaaaaa;
+	border-width: 1px;
+	border-style: solid;
+	padding: 0px 5px 0px 5px;
+}
+
+.display-table {
+	display: table;
+	width: 100%;
+}
+
+.table-row {
+	display: table-row;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#btn-submit-review, #btn-update-condition {
+	float: right;
+}
+
+.first-trail-review {
+	margin-top: 1em;
+}
+
+.middle-trail-review {
+	border-bottom-color: #aaaaaa;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	margin-bottom: 1em;
+}
+
+#trail-reviews {
+	margin-bottom: 1.50em;
+}
+

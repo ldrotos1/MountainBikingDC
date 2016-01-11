@@ -11,8 +11,8 @@ $( window ).load(function() {
 	// Creates the map
 	objGlobalVars.objMap = nsMap.createMap("map"); 
 	
-	// Setups the trail information dialog
-	nsTrailInfoDialog.initDialog();
+	// Initializes the trail information sidebar.
+	nsTrailInfo.initSidebar(objGlobalVars.objMap, objGlobalVars.strDatastore);
 	
 	// Gets the data from the data from the database and adds it to the map
 	var objDbRef = new Firebase('https://radiant-torch-5066.firebaseio.com/trails');
@@ -108,36 +108,6 @@ $( window ).load(function() {
 					
 					// Updates the legend
 					nsLegend.showRatingLegend();
-				}
-				else if (strVal === 'Beginner') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbBeginner();
-					});
-					
-					// Updates the legend
-					nsLegend.showBeginnerLegend();
-				}
-				else if (strVal === 'Intermediate') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbIntermediate();
-					});
-					
-					// Updates the legend
-					nsLegend.showIntermediateLegend();
-				}
-				else if (strVal === 'Advanced') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbAdvanced();
-					});
-					
-					// Updates the legend
-					nsLegend.showAdvancedLegend();
 				}
 				else {
 					console.log('Unknown display by value');

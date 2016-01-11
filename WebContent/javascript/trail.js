@@ -85,10 +85,10 @@ Trail.prototype = {
 				}))
 			});
 			
-			// Opens trail dialog when the marker is clicked
+			// Show trail information sidebar when trail icon is clicked
 			this.marker.on('click', function(e) {
 				
-				nsTrailInfoDialog.openTrailDialog(self);
+				nsTrailInfo.showTrailInfo(self);
 			});
 			
 			// Adds the marker to the map

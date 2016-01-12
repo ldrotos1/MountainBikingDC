@@ -27,14 +27,23 @@ nsTrailInfo = function(){
 			this.strDatastore = strDataUrl
 			
 			// Initializes the update trail condition button
-			$( '#btn-update-condition' ).button();
+			$( '#btn-update-condition' ).button().click(function( event ) {
+				
+			});
 			
 			// Initializes the submit trail review button
-			$( '#btn-submit-review' ).button();
+			$( '#btn-submit-review' ).button().click(function( event ) {
+				nsTrailReviewForm.showReviewForm();
+			});
 			
 			// Creates sidebar and adds it to the map
 			this.objSidebar = L.control.sidebar( 'trail-info-sidebar', {
 				position: 'left'
+			});
+			
+			// When sidebar is closed then review form is also closed
+			this.objSidebar.on('hide', function(event) {
+				nsTrailReviewForm.closeReviewForm();
 			});
 			
 			objMap.addControl( this.objSidebar );

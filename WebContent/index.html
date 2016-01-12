@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/L.Control.Sidebar.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/legend.css">
+	<link rel="stylesheet" type="text/css" href="styles/trail-review-dialog.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-info-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="styles/easy-button.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -24,6 +25,7 @@
 	<script type="text/javascript" src="javascript/easy-button.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
+	<script type="text/javascript" src="javascript/trail-review-dialog.js"></script>
 	<script type="text/javascript" src="javascript/trail-info-sidebar.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
 	<script type="text/javascript" src="javascript/setup.js"></script>
@@ -166,7 +168,7 @@
 					</div> -->
 		
 		<!-- Submit review dialog -->
-		<!--<div id='review-dialog'>
+		<div id='trail-review-dialog'>
 			<div id='reviewer-name-container' class='reviewer-input'>
 				<label for='reviewer-name' class='review-label'>Name:</label>
 				<input type="text" id='reviewer-name' name='name'>
@@ -187,11 +189,10 @@
 				<label for='reviewer-comments' class='review-label'>Comments:</label>
 				<textarea id='reviewer-comments' name='comments' cols='40' rows='5'></textarea>
 			</div>
-			<div id='review-toolbar' class='dialog-toolbar'>
-				<button id='btn-submit-review' class='dialog-btn'>Submit Review</button>
-				<button id='btn-review-cancel' class='dialog-btn'>Cancel</button>
+			<div id='submit-review-container'>
+				<button id='btn-submit-review'>Submit Review</button>
 			</div>
-		</div> -->
+		</div>
 		
 	</div>
 </body>

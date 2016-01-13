@@ -292,6 +292,10 @@ nsTrailReviewForm = function(){
 			    	close: function() {
 			    		$( '.leaflet-control-container' ).removeClass( 'ui-widget-overlay' );
 			    		
+			    		// Resets the name and comments section
+			    		$( '#reviewer-name' ).val('');
+						$( '#reviewer-comments' ).val('');
+			    		
 			    		// Resets the rating stars
 			    		objGlobalVars.numRating = 0;
 			    		$( ".rating-star" ).addClass( "empty-star" ).removeClass( "full-star" );

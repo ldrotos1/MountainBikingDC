@@ -123,7 +123,7 @@ nsTrailInfo = function(){
 		
 		// Gets the review data for this trail from the back end
 		objDbConn = new Firebase(strDatastore + strTrailName);
-		objDbConn.once("value", function(data) {
+		objDbConn.on("value", function(data) {
 
 			// Removes any reviews from previous trails
 			$( ".first-trail-review, .middle-trail-review, .last-trail-review" ).remove();

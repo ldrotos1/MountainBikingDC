@@ -205,7 +205,7 @@ nsTrailReviewForm = function(){
 		/**
 		 * Creates and displays the trail review submission dialog.
 		 */
-		showReviewForm: function() {
+		showReviewForm: function(strReviewsUrl, strTrailsUrl) {
 
 			// Initializes the dialog if needed
 			if (this.dialog === undefined ) {
@@ -219,61 +219,87 @@ nsTrailReviewForm = function(){
 					var strName,
 					strRating,
 					numRating,
+					numAvgRating,
 					strDate,
 					strComment,
 					strTrailName,
 					strReviewDom,
-					objDbConn,
-					objNewReview;
+					objDbConnReviews,
+					objDbConnTrails,
+					objNewReview,
+					objNewAvgRating;
 					
-					// Gets the user inputs 
-					strName = $( '#reviewer-name' ).val();
-					strComment = $( '#reviewer-comments' ).val();
-					numRating = objGlobalVars.numRating;
-					
-					if (strComment === '') {
-						strComment = "No comments provided.";
-					}
-					
-					// Validates inputs
-					if (strName === '' || numRating === 0) {
-					
-						alert("Please provide at least a name and a rating.");
-					}
-					else if (numRating < 1 || numRating > 5 ){
+					try {
 						
-						alert("The rating must be between 1 and 5.");
-					}
-					else {
-						
-						// Adds the review to the review list
+						// Gets the user inputs 
+						strName = $( '#reviewer-name' ).val();
+						strComment = $( '#reviewer-comments' ).val();
+						numRating = objGlobalVars.numRating;
 						strDate = new Date().toJSON().slice( 0, 10 );
-						strReviewDom = "<div class=\'middle-trail-review\'>";
-						strReviewDom += "<span>" + strName + "</span><br>";
-						strReviewDom += "<span>" + strDate + "</span><br>";
-						strReviewDom += "<span>" + numRating + " out of 5 Stars</span><br>";
-						strReviewDom += "<p>" + strComment + "</p>";
-						strReviewDom += "</div>";
-						$( "#trail-reviews-list" ).prepend( strReviewDom );
 						
-						// Updates review classes
-						$( '.first-trail-review:first' ).removeClass( 'first-trail-review' );
-						$( '.middle-trail-review:first' ).addClass( 'first-trail-review' );
+						if (strComment === '') {
+							strComment = "No comments provided.";
+						}
 						
-						// Gets the trail name and removes any spaces
-						strTrailName = $( '#trail-name' ).text();
-						strTrailName = strTrailName.replace(/ +/g, "");
+						// Validates inputs
+						if (strName === '' || numRating === 0) {
 						
-						// Pushes the new review to the database
-						objDbConn = new Firebase('https://radiant-torch-5066.firebaseio.com/reviews/' + strTrailName);
-						objNewReview = objDbConn.push();
-						objNewReview.set({ 
-							'name': strName, 
-							'date': strDate,
-							'rating': numRating.toString(), 
-							'comments': strComment
-						});
-						
+							alert("Please provide at least a name and a rating.");
+						}
+						else if (numRating < 1 || numRating > 5 ){
+							
+							alert("The rating must be between 1 and 5.");
+						}
+						else {
+							
+							// Gets the trail name and removes any spaces
+							strTrailName = $( '#trail-name' ).text();
+							strTrailName = strTrailName.replace(/ +/g, "");
+							
+							// Creates the database connection 
+							objDbConnReviews = new Firebase(strReviewsUrl + strTrailName);
+							
+							// Gets the list of current reviews and computes the new average rating
+							objDbConnReviews.once("value", function(dataset) {
+								
+								var numTotalRating = numRating,
+								numCount = 1;
+								
+								// Sums the the existing reviews' ratings
+								dataset.forEach(function(data) {
+									
+									var objVal = data.val();
+									numTotalRating = numTotalRating + objVal.rating;
+									numCount++;
+								});
+								
+								// Compute the and round the new average rating
+								numAvgRating = Math.round(numTotalRating/numCount);
+							});
+							
+							// Pushes the new review to the database
+							objNewReview = objDbConnReviews.push();
+							objNewReview.set({ 
+								'name': strName, 
+								'date': strDate,
+								'rating': numRating, 
+								'comments': strComment
+							});
+							
+							// Updates the average rating in the database.
+							objDbConnTrails = new Firebase(strTrailsUrl + strTrailName);
+							objNewAvgRating = objDbConnTrails.update({
+								'avg_rating': numAvgRating
+							});
+						}
+					}
+					catch(err) {
+					   
+						console.log( "Error: Review submission - " + err );
+						alert( "An error occurred while submitting the review" );
+					} 
+					finally {
+					   
 						// Closes the dialog
 						self.dialog.dialog( 'close' );
 					}
@@ -297,8 +323,8 @@ nsTrailReviewForm = function(){
 						$( '#reviewer-comments' ).val('');
 			    		
 			    		// Resets the rating stars
-			    		objGlobalVars.numRating = 0;
 			    		$( ".rating-star" ).addClass( "empty-star" ).removeClass( "full-star" );
+			    		objGlobalVars.numRating = 0;
 			    	}
 			    })
 			}

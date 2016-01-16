@@ -7,7 +7,8 @@
  */
 
 var objGlobalVars = {
-	strDatastore: 'https://radiant-torch-5066.firebaseio.com/reviews/',
+	strReviewsDB: 'https://radiant-torch-5066.firebaseio.com/reviews/',
+	strTrailsDB: 'https://radiant-torch-5066.firebaseio.com/trails/',
 	objMap: null,
 	arrTrails: [],
 	numRating: 0

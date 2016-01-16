@@ -12,7 +12,7 @@ $( window ).load(function() {
 	objGlobalVars.objMap = nsMap.createMap("map"); 
 	
 	// Initializes the trail information sidebar.
-	nsTrailInfo.initSidebar(objGlobalVars.objMap, objGlobalVars.strDatastore);
+	nsTrailInfo.initSidebar(objGlobalVars.objMap, objGlobalVars.strReviewsDB, objGlobalVars.strTrailsDB);
 	
 	// Gets the data from the data from the database and adds it to the map
 	var objDbRef = new Firebase('https://radiant-torch-5066.firebaseio.com/trails');

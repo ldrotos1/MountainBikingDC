@@ -16,9 +16,6 @@ nsTrailInfo = function(){
 	this.objReviewConn = undefined;
 	this.objTrailConn = undefined;
 	
-	/*
-	 * Public functions
-	 */
 	return {
 
 		/**
@@ -38,7 +35,7 @@ nsTrailInfo = function(){
 			
 			// Initializes the update trail condition button
 			$( '#btn-update-condition' ).button().click(function( event ) {
-				
+				nsCondUpdate.showCondUpdate( self.strTrailsDB );
 			});
 			
 			// Initializes the submit trail review button
@@ -150,7 +147,7 @@ nsTrailInfo = function(){
 			$( '#trail-dist' ).text( objTrail.distance + ' miles' );
 			$( '#trail-difficulty' ).text( objTrail.getDifficulty() );
 			$( '#trail-condition' ).text( objTrail.condition );
-			$( '#cond-update-date').text(' as of ' + objTrail.condDate )
+			$( '#cond-update-date').text( objTrail.condDate )
 			$( '#trail-avg-rating' ).text( objTrail.getAverageRating() );
 			
 			// Gets the trail name and removes all white space
@@ -170,7 +167,18 @@ nsTrailInfo = function(){
 			this.objTrailConn = new Firebase(this.strTrailsDB + strTrailName);
 			this.objTrailConn.on("child_changed", function(data) {
 				
-				$( '#trail-avg-rating' ).text( data.val() + " out of 5 Stars" );
+				// Determines what portion of the trail information was updated and
+				// changes the relevant section of the DOM 
+				var strKey = data.key();
+				if ( strKey === 'avg_rating' ) {
+					$( '#trail-avg-rating' ).text( data.val() + " out of 5 Stars" );
+				}
+				else if ( strKey === 'condition' ) {
+					$( '#trail-condition' ).text( data.val() );
+				}
+				else if ( strKey === 'condition_date' ) {
+					$( '#cond-update-date' ).text( data.val() );
+				}
 			});
 			
 			// Gets the review data for this trail from the back end

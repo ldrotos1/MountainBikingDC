@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+#update-cond-form {
+	display: none;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 16px;
+	color: #245C83;
+}
+
+.rdb-update-cond {
+	margin-bottom: 10px;
+}
+
+#cond-update-rdb-container {
+	margin-top: 5px;
+}
+
+#cond-update-btn-container {
+	margin-top: 10px;
+	float: right;
+}

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/L.Control.Sidebar.css">
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/legend.css">
+	<link rel="stylesheet" type="text/css" href="styles/trail-condition-update.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-review-dialog.css">
 	<link rel="stylesheet" type="text/css" href="styles/trail-info-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="styles/easy-button.css">
@@ -25,6 +26,7 @@
 	<script type="text/javascript" src="javascript/easy-button.js"></script>
 	<script type="text/javascript" src="javascript/global-vars.js"></script>
 	<script type="text/javascript" src="javascript/map.js"></script>
+	<script type="text/javascript" src="javascript/trail-condition-update.js"></script>
 	<script type="text/javascript" src="javascript/trail-review-dialog.js"></script>
 	<script type="text/javascript" src="javascript/trail-information.js"></script>
 	<script type="text/javascript" src="javascript/trail.js"></script>
@@ -130,6 +132,7 @@
 						<div class='table-cell'>
 							<span class="trail-info-title">Condition: </span>
 							<span id='trail-condition' class='trail-info-content'></span>
+							<span class='trail-info-content'> as of </span>
 							<span id='cond-update-date' class='trail-info-content'></span>
 						</div>
 						<div class='table-cell'>
@@ -158,14 +161,17 @@
 			<div id='trail-reviews-list'></div>
 		</div>
 		
-		<!--  <div id='update-cond-form'>
-						<span id='set-cond-title'>Set Condition</span><br>
-						<input class='rdb-update-cond' type="radio" name="condition" value="Good">Good - Dry<br>
-						<input class='rdb-update-cond' type="radio" name="condition" value="Fair">Fair - Some wet spots<br>
-						<input class='rdb-update-cond' type="radio" name="condition" value="Bad">Bad - Muddy<br>
-						<button id='btn-update-cond'>Update</button>
-						<button id='btn-cancel-cond'>Cancel</button>
-					</div> -->
+		<!-- Update trail condition dialog -->
+		<div id='update-cond-form'>
+			<div id='cond-update-rdb-container'>
+				<input class='rdb-update-cond' type="radio" name="condition" value="Good"> Good - Dry<br>
+				<input class='rdb-update-cond' type="radio" name="condition" value="Fair"> Fair - Some wet spots<br>
+				<input class='rdb-update-cond' type="radio" name="condition" value="Bad"> Bad - Muddy<br>
+			</div>
+			<div id='cond-update-btn-container'>
+				<button id='btn-submit-cond-update'>Update</button>
+			</div>
+		</div>
 		
 		<!-- Submit review dialog -->
 		<div id='trail-review-dialog'>

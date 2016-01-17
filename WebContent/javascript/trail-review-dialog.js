@@ -311,7 +311,7 @@ nsTrailReviewForm = function(){
 			    	modal: true,
 			    	resizable: false,
 			    	title: 'Submit Trail Review',
-			    	width: 600,
+			    	width: 565,
 			    	open: function() {
 			    		$('.leaflet-control-container').addClass('ui-widget-overlay');
 			    	},

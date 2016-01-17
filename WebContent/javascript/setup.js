@@ -11,9 +11,6 @@ $( window ).load(function() {
 	// Creates the map
 	objGlobalVars.objMap = nsMap.createMap("map"); 
 	
-	// Initializes the trail information sidebar.
-	nsTrailInfo.initSidebar(objGlobalVars.objMap, objGlobalVars.strReviewsDB, objGlobalVars.strTrailsDB);
-	
 	// Gets the data from the data from the database and adds it to the map
 	var objDbRef = new Firebase('https://radiant-torch-5066.firebaseio.com/trails');
 	objDbRef.once("value", function(data) {
@@ -33,40 +30,6 @@ $( window ).load(function() {
 			
 			// Saves a reference of the trail
 			objGlobalVars.arrTrails.push(trail);
-		});
-		
-		// Adds the trail names to the select by trail menu
-		var menuNode = $( '#select-name-control' )
-		$.each(arrNames, function(index, value){
-			menuNode.prepend( "<option>" + value + "</option>" );
-		})
-		
-		// Initializes the search by name control
-		$( "#select-name-control" ).selectmenu({
-			width: 150,
-			change: function( event, ui ) {
-				
-				var strVal,
-				objCoord;
-				
-				// Iterates through the trails to find the selected trail
-				strVal = ui.item.value;
-				$.each(objGlobalVars.arrTrails, function( index, value ) {
-					
-					if (value.name === strVal) {
-						
-						// Enlarges the marker of the selected trail and centers the 
-						// map on the marker.
-						value.selectTrail();
-						objGlobalVars.objMap.setView(value.coord);
-					}
-					else {
-						
-						// Ensures that this trail is not selected
-						value.unselectTrail();
-					}
-				});
-			}
 		});
 		
 		// Initializes the display trails by control
@@ -127,6 +90,13 @@ $( window ).load(function() {
 				objGlobalVars.objMap.doubleClickZoom.enable();
 			}
 		);
+		
+		// Initializes the trail information controls
+		nsTrailInfo.initTrailInfo(
+				objGlobalVars.objMap, 
+				objGlobalVars.strReviewsDB, 
+				objGlobalVars.strTrailsDB,
+				objGlobalVars.arrTrails);
 		
 		// Displays the control pane
 		$( '#controls-pane' ).fadeIn( "slow" );

@@ -2,12 +2,14 @@
  * Louis Drotos
  * Dec 26, 2015
  * 
- * This module provides a namespace for code that creates and
- * maintains the trail information sidebar.
+ * This module provides a namespace for code that presents
+ * the trail information to the user.
  */
 
 nsTrailInfo = function(){
 	
+	this.objMap = undefined;
+	this.objTrailCoord = undefined;
 	this.objSidebar = undefined;
 	this.strReviewDB = undefined;
 	this.strTrailsDB = undefined;
@@ -20,15 +22,17 @@ nsTrailInfo = function(){
 	return {
 
 		/**
-		 * Initializes the sidebar and adds it to a map
+		 * Initializes the trail info sidebar and the search by name select control.
 		 * @param objMap { object } The map to which the sidebar will be added.
 		 * @param strDataUrl { string } The URL to the Firebase data store.
+		 * @param arrTrails { array[object] } The trail objects
 		 */
-		initSidebar: function( objMap, strReviewsUrl, strTrailsUrl ) {
+		initTrailInfo: function( objMap, strReviewsUrl, strTrailsUrl, arrTrails ) {
 			
 			var self = this;
 			
-			// Stores datastore URLs and creates DB connections
+			// Stores map reference, datastore URLs and creates DB connections
+			this.objMap = objMap;
 			this.strReviewDB = strReviewsUrl;
 			this.strTrailsDB = strTrailsUrl;
 			
@@ -44,18 +48,56 @@ nsTrailInfo = function(){
 			
 			// Creates sidebar and adds it to the map
 			this.objSidebar = L.control.sidebar( 'trail-info-sidebar', {
-				position: 'left'
+				position: 'left',
+				autoPan: false
+			});
+			
+			// When sidebar is shown the map is centered on the trail
+			this.objSidebar.on('shown', function(event) {
+				self.objMap.setView( self.objTrailCoord );
 			});
 			
 			// When sidebar is closed all callbacks connected to the database are removed
 			this.objSidebar.on('hide', function(event) {
-				this.objReviewConn.off();
-				this.objTrailConn.off();
-				this.objReviewConn = undefined;
-				this.objTrailConn = undefined;
+				self.objReviewConn.off();
+				self.objTrailConn.off();
+				self.objReviewConn = undefined;
+				self.objTrailConn = undefined;
 			});
-			
 			objMap.addControl( this.objSidebar );
+			
+			// Adds the trail names to the select by trail menu
+			var menuNode = $( '#select-name-control' )
+			$.each(arrTrails, function(index, value){
+				menuNode.prepend( "<option>" + value.name + "</option>" );
+			})
+			
+			// Initializes the search by name control
+			$( "#select-name-control" ).selectmenu({
+				width: 150,
+				change: function( event, ui ) {
+					
+					var strVal,
+					objCoord;
+					
+					// Iterates through the trails to find the selected trail
+					strVal = ui.item.value;
+					$.each(arrTrails, function( index, value ) {
+						
+						if (value.name === strVal) {
+							
+							// Enlarges the marker of the selected trail and shows the
+							// trail info sidebar.
+							value.selectTrail();
+							self.showTrailInfo(value);
+						}
+						else {
+							// Ensures that this trail is not selected
+							value.unselectTrail();
+						}
+					});
+				}
+			});
 		},
 		
 		/**
@@ -66,10 +108,13 @@ nsTrailInfo = function(){
 		 */
 		showTrailInfo: function( objTrail ) {
 			
+			this.objTrailCoord = objTrail.coord;
+			
 			if (this.objSidebar.isVisible() === true) {
 				
 				// Update sidebar content
 				this._updateTrailInfo( objTrail );
+				this.objMap.setView( this.objTrailCoord );
 				
 			} else {
 				

@@ -32,52 +32,6 @@ $( window ).load(function() {
 			objGlobalVars.arrTrails.push(trail);
 		});
 		
-		// Initializes the display trails by control
-		$( "#display-by-control" ).selectmenu({
-			width: 150,
-			change: function( event, ui ) {
-				
-				// Determines what symbol scheme to use and applies
-				// scheme to each of the trails
-				var strVal = ui.item.value;
-				
-				if (strVal === 'Default') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbDefault();
-					});
-					
-					// Updates the legend
-					nsLegend.showDefaultLegend();
-					
-				}
-				else if (strVal === 'Trail Condition') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbCondition();
-					});
-					
-					// Updates the legend
-					nsLegend.showConditionLegend();
-				}
-				else if (strVal === 'Average Rating') {
-					
-					$.each(objGlobalVars.arrTrails, function( index, value ) {
-						
-						value.symbAvgRating();
-					});
-					
-					// Updates the legend
-					nsLegend.showRatingLegend();
-				}
-				else {
-					console.log('Unknown display by value');
-				}
-			}
-		});
-		
 		// Wires methods for disabling map panning when cursor
 		// is hovering over control pane
 		$( "#controls-pane, #legend-pane" ).hover(
@@ -97,6 +51,11 @@ $( window ).load(function() {
 				objGlobalVars.strReviewsDB, 
 				objGlobalVars.strTrailsDB,
 				objGlobalVars.arrTrails);
+		
+		// Initializes the trail display controls
+		nsTrailDisplay.initTrailDisplay(
+				objGlobalVars.strTrailsDB, 
+				objGlobalVars.arrTrails)
 		
 		// Makes the sidebar visible
 		$( '#trail-info-sidebar' ).css( 'visibility', 'visible' )

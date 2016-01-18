@@ -98,6 +98,9 @@ $( window ).load(function() {
 				objGlobalVars.strTrailsDB,
 				objGlobalVars.arrTrails);
 		
+		// Makes the sidebar visible
+		$( '#trail-info-sidebar' ).css( 'visibility', 'visible' )
+		
 		// Displays the control pane
 		$( '#controls-pane' ).fadeIn( "slow" );
 	});

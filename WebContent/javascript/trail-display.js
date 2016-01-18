@@ -12,6 +12,7 @@ nsTrailDisplay = function(){
 	this.domDefault = undefined;
 	this.domCondition = undefined;
 	this.domRating = undefined;
+	this.arrTrails = undefined;
 	
 	/**
 	 * Public functions
@@ -29,12 +30,7 @@ nsTrailDisplay = function(){
 		initTrailDisplay: function( strTrailsUrl, arrTrails ) {
 			
 			var self = this;
-			//objTrailConn;
-			
-			//objTrailConn = new Firebase( strTrailsUrl );
-			//objTrailConn.on("child_changed", function(data) {
-				//alert("fired!");
-			//});
+			this.arrTrails = arrTrails
 			
 			// Initializes the display trails by select menu.
 			$( "#display-by-control" ).selectmenu({
@@ -47,7 +43,7 @@ nsTrailDisplay = function(){
 					
 					if (strVal === 'Default') {
 						
-						$.each(arrTrails, function( index, value ) {
+						$.each(self.arrTrails, function( index, value ) {
 							
 							value.symbDefault();
 						});
@@ -58,7 +54,7 @@ nsTrailDisplay = function(){
 					}
 					else if (strVal === 'Trail Condition') {
 						
-						$.each(arrTrails, function( index, value ) {
+						$.each(self.arrTrails, function( index, value ) {
 							
 							value.symbCondition();
 						});
@@ -68,7 +64,7 @@ nsTrailDisplay = function(){
 					}
 					else if (strVal === 'Average Rating') {
 						
-						$.each(arrTrails, function( index, value ) {
+						$.each(self.arrTrails, function( index, value ) {
 							
 							value.symbAvgRating();
 						});
@@ -81,6 +77,26 @@ nsTrailDisplay = function(){
 					}
 				}
 			});
+		},
+		
+		/**
+		 * Updates the symbology of the trail icons if the current
+		 * symbology is set to condition or average rating.
+		 */
+		recomputeSymbology: function() {
+			
+			if ( this.type === 'CONDITION' ) {
+				
+				$.each(this.arrTrails, function( index, value ) {
+					value.symbCondition();
+				});
+			}
+			else if ( this.type === 'RATING' ) {
+				
+				$.each(this.arrTrails, function( index, value ) {
+					value.symbAvgRating();
+				});
+			}
 		},
 		
 		/**

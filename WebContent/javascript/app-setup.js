@@ -63,6 +63,33 @@ $( window ).load(function() {
 		// Displays the control pane
 		$( '#controls-pane' ).fadeIn( "slow" );
 	});
+	
+	// Updates the trail state when its database representation changes
+	objDbRef.on( 'child_changed', function(data) {
+		
+		// Gets the updated trail information
+		var objUpdatedTrail = data.exportVal();
+		
+		// Finds the trail object to be updated
+		$.each(objGlobalVars.arrTrails, function( index, value ) {
+			
+			if (objUpdatedTrail.name === value.name) {
+				
+				// Updates the properties that can be updated
+				value.condition = objUpdatedTrail.condition;
+				value.condDate = objUpdatedTrail.condition_date;
+				value.avgRating = objUpdatedTrail.avg_rating;
+				
+				// Breaks out of loop
+				return false;
+			}
+		});
+		
+		// Updates the filter and trail symbology
+		var dfd = $.Deferred();
+		dfd.done( nsTrailFilter.filterTrails( objGlobalVars.arrTrails ), 
+				nsTrailDisplay.recomputeSymbology());
+	});
 });
 	
 	

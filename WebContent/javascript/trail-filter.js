@@ -15,7 +15,7 @@ $( window ).load(function() {
 	    max: 5,
 	    values: [1,5],
 	    stop: function( event, ui ){
-	    	nsFilter.filterTrails(objGlobalVars.arrTrails);
+	    	nsTrailFilter.filterTrails(objGlobalVars.arrTrails);
 	    }
 	}).slider('pips', {
 		rest:"label"
@@ -25,15 +25,15 @@ $( window ).load(function() {
 	
 	// Wires the event handlers for the filter controls
 	$( '.filter-checkbox' ).change(function(evt){
-		nsFilter.filterTrails(objGlobalVars.arrTrails);
+		nsTrailFilter.filterTrails(objGlobalVars.arrTrails);
 	});
 	
 	$("#btn-reset-filter").click(function(){
-		nsFilter.resetFilter(objGlobalVars.arrTrails);
+		nsTrailFilter.resetFilter(objGlobalVars.arrTrails);
 	});
 });
 
-nsFilter = function(){
+nsTrailFilter = function(){
 	
 	return {
 		

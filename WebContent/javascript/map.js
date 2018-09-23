@@ -39,7 +39,7 @@ nsMap = function(){
 			});
 			
 			// Creates and adds the base layer to the map
-			var lyr = new L.tileLayer('http://api.tiles.mapbox.com/v4/ldrotos.5b90ed84/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGRyb3RvcyIsImEiOiJwQXgwZ2ZVIn0.pPrIMXZdwniJcp79DNpg9g', {
+			var lyr = new L.tileLayer('https://api.tiles.mapbox.com/v4/ldrotos.5b90ed84/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGRyb3RvcyIsImEiOiJwQXgwZ2ZVIn0.pPrIMXZdwniJcp79DNpg9g', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy <a href="http://mapbox.com">Mapbox</a>',
 			});
 			
